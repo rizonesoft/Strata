@@ -1,0 +1,17 @@
+{
+  "title": "Strata implementation plan",
+  "acceptance": "An examiner can open a raw or E01 image of a Windows disk, ingest it, and see one timeline that merges the live file system, every shadow copy and carved unallocated records, with every event traceable to its byte offset, in both the CLI and the desktop app.",
+  "phase_list": [0, 1, 2, 3, 4, 5, 6, 7, 8, 99],
+  "phases": {
+    "0": "Repository and tooling",
+    "1": "Evidence access",
+    "2": "NTFS",
+    "3": "Shadow copies",
+    "4": "Unallocated space",
+    "5": "Case store and timeline",
+    "6": "Cross-layer analysis and reporting",
+    "7": "Desktop app",
+    "8": "Release",
+    "99": "Manual, operator only"
+  }
+}
