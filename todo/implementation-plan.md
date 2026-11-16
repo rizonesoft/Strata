@@ -8,14 +8,14 @@ Format and rules: `todo/README.md`. Run sections with the `process-plan`, `proce
 
 ### Phase 0: Repository and tooling
 
-Sections: 5 | Checklist items: 33
+Sections: 5 | Checklist items: 34
 
 | Status | Reference  | Deliverable                                  | Needs                  | Items |
 | ------ | ---------- | -------------------------------------------- | ---------------------- | ----- |
-| [ ]    | D00 T01 §1 | Rust and MSVC toolchain on the workstation   | windows-host, attended | 6     |
+| [ ]    | D00 T01 §1 | Rust and MSVC toolchain on the workstation   | windows-host           | 6     |
 | [ ]    | D00 T01 §2 | Cargo workspace with every crate skeleton    | none                   | 7     |
-| [ ]    | D00 T01 §3 | Format, lint and licence checks              | none                   | 6     |
-| [ ]    | D00 T01 §4 | Fixture image build script and manifest      | windows-host, attended | 10    |
+| [ ]    | D00 T01 §3 | Format, lint and licence checks              | none                   | 7     |
+| [ ]    | D00 T01 §4 | Fixture image build script and manifest      | windows-host, elevated | 10    |
 | [ ]    | D00 T01 §5 | Test kit that loads the fixture and manifest | none                   | 4     |
 
 ### Phase 1: Evidence access
@@ -79,7 +79,7 @@ Sections: 5 | Checklist items: 26
 
 ### Phase 5: Case store and timeline
 
-Sections: 26 | Checklist items: 139
+Sections: 28 | Checklist items: 150
 
 | Status | Reference  | Deliverable                                     | Needs | Items |
 | ------ | ---------- | ----------------------------------------------- | ----- | ----- |
@@ -106,18 +106,24 @@ Sections: 26 | Checklist items: 139
 | [ ]    | D05 T03 §4 | Carved record ingest                            | none  | 5     |
 | [ ]    | D05 T03 §5 | Progress, cancellation and rerun                | none  | 8     |
 | [ ]    | D05 T03 §6 | Optional content hashing                        | none  | 4     |
+| [ ]    | D05 T03 §7 | Recoverability of deleted records at ingest     | none  | 5     |
+| [ ]    | D05 T03 §8 | Disk map written at ingest                      | none  | 6     |
 | [ ]    | D07 T01 §5 | case create, case info and case ingest commands | none  | 8     |
 | [ ]    | D07 T01 §6 | timeline command                                | none  | 6     |
 | [ ]    | D07 T01 §7 | bookmark add, list and remove commands          | none  | 5     |
 
 ### Phase 6: Cross-layer analysis and reporting
 
-Sections: 7 | Checklist items: 41
+Sections: 11 | Checklist items: 64
 
 | Status | Reference  | Deliverable                                   | Needs | Items |
 | ------ | ---------- | --------------------------------------------- | ----- | ----- |
 | [ ]    | D06 T01 §1 | File history across layers                    | none  | 6     |
 | [ ]    | D06 T01 §2 | Layer comparison                              | none  | 5     |
+| [ ]    | D06 T01 §3 | Deleted files query and summaries             | none  | 4     |
+| [ ]    | D06 T01 §4 | Recent activity by day                        | none  | 6     |
+| [ ]    | D06 T01 §5 | Overview aggregates                           | none  | 6     |
+| [ ]    | D06 T01 §6 | Disk map queries and raw region reads         | none  | 7     |
 | [ ]    | D06 T02 §1 | CSV and JSONL timeline export                 | none  | 6     |
 | [ ]    | D06 T02 §2 | File extraction with hash and audit           | none  | 5     |
 | [ ]    | D06 T02 §3 | Self-contained HTML report                    | none  | 7     |
@@ -126,44 +132,52 @@ Sections: 7 | Checklist items: 41
 
 ### Phase 7: Desktop app
 
-Sections: 23 | Checklist items: 167
+Sections: 31 | Checklist items: 267
 
-| Status | Reference   | Deliverable                                       | Needs                         | Items |
-| ------ | ----------- | ------------------------------------------------- | ----------------------------- | ----- |
-| [ ]    | D08 T01 §1  | Tauri and React app scaffold                      | windows-host                  | 8     |
-| [ ]    | D08 T01 §2  | Design tokens and themes                          | none                          | 6     |
-| [ ]    | D08 T01 §3  | Typed command bridge to the engine                | none                          | 8     |
-| [ ]    | D08 T01 §4  | Window frame, navigation rail and status bar      | none                          | 7     |
-| [ ]    | D08 T01 §5  | End-to-end harness against the built app          | windows-host, display-session | 7     |
-| [ ]    | D08 T01 §6  | Settings store and dialog                         | windows-host, display-session | 6     |
-| [ ]    | D08 T01 §7  | Start screen and recent cases                     | windows-host, display-session | 7     |
-| [ ]    | D08 T01 §8  | New case dialog                                   | windows-host, display-session | 7     |
-| [ ]    | D08 T01 §9  | Ingest progress screen                            | windows-host, display-session | 9     |
-| [ ]    | D08 T01 §10 | Case error and evidence relocation states         | windows-host, display-session | 5     |
-| [ ]    | D08 T02 §1  | Overview view                                     | windows-host, display-session | 7     |
-| [ ]    | D08 T02 §2  | Layers view                                       | windows-host, display-session | 5     |
-| [ ]    | D08 T02 §3  | Files view: tree, breadcrumb and table            | windows-host, display-session | 9     |
-| [ ]    | D08 T02 §4  | Files view: details pane, hex preview and extract | windows-host, display-session | 9     |
-| [ ]    | D08 T02 §5  | Timeline grid with paged virtual scrolling        | windows-host, display-session | 9     |
-| [ ]    | D08 T02 §6  | Timeline filters and density strip                | windows-host, display-session | 8     |
-| [ ]    | D08 T02 §7  | Event detail pane and bookmark toggle             | windows-host, display-session | 7     |
-| [ ]    | D08 T02 §8  | History view                                      | windows-host, display-session | 8     |
-| [ ]    | D08 T02 §9  | Compare view                                      | windows-host, display-session | 7     |
-| [ ]    | D08 T02 §10 | Bookmarks view                                    | windows-host, display-session | 7     |
-| [ ]    | D08 T02 §11 | Audit log view                                    | windows-host, display-session | 6     |
-| [ ]    | D08 T02 §12 | Export and Report dialogs                         | windows-host, display-session | 7     |
-| [ ]    | D08 T02 §13 | Navigation, keyboard and accessibility pass       | windows-host, display-session | 8     |
+| Status | Reference   | Deliverable                                         | Needs                         | Items |
+| ------ | ----------- | --------------------------------------------------- | ----------------------------- | ----- |
+| [ ]    | D08 T01 §1  | Tauri and React app scaffold                        | windows-host                  | 8     |
+| [ ]    | D08 T01 §2  | Design styles, fonts, icons and base components     | none                          | 10    |
+| [ ]    | D08 T01 §3  | Typed command bridge to the engine                  | none                          | 8     |
+| [ ]    | D08 T01 §4  | Window frame, module sidebar and status bar         | none                          | 8     |
+| [ ]    | D08 T01 §5  | End-to-end harness against the built app            | windows-host, display-session | 7     |
+| [ ]    | D08 T01 §11 | Core column and shared layer state                  | none                          | 7     |
+| [ ]    | D08 T01 §12 | Chart components                                    | none                          | 6     |
+| [ ]    | D08 T03 §1  | Design data and parity mode                         | windows-host, display-session | 6     |
+| [ ]    | D08 T03 §2  | Parity comparison and drift checks                  | windows-host, display-session | 7     |
+| [ ]    | D08 T01 §6  | Settings store and dialog                           | windows-host, display-session | 8     |
+| [ ]    | D08 T01 §7  | Start screen and recent cases                       | windows-host, display-session | 10    |
+| [ ]    | D08 T01 §8  | New case dialog                                     | windows-host, display-session | 8     |
+| [ ]    | D08 T01 §9  | Ingest progress screen                              | windows-host, display-session | 11    |
+| [ ]    | D08 T01 §10 | Case error and evidence relocation states           | windows-host, display-session | 7     |
+| [ ]    | D08 T02 §1  | Overview view                                       | windows-host, display-session | 11    |
+| [ ]    | D08 T02 §2  | Layers view                                         | windows-host, display-session | 8     |
+| [ ]    | D08 T02 §3  | Files view: tree, breadcrumb and table              | windows-host, display-session | 10    |
+| [ ]    | D08 T02 §4  | Files view: details pane, hex preview and extract   | windows-host, display-session | 12    |
+| [ ]    | D08 T02 §5  | Timeline grid with paged virtual scrolling          | windows-host, display-session | 10    |
+| [ ]    | D08 T02 §6  | Timeline filters, lane chart and density chart      | windows-host, display-session | 8     |
+| [ ]    | D08 T02 §7  | Event detail pane and bookmark toggle               | windows-host, display-session | 11    |
+| [ ]    | D08 T02 §8  | History view                                        | windows-host, display-session | 10    |
+| [ ]    | D08 T02 §9  | Compare view                                        | windows-host, display-session | 9     |
+| [ ]    | D08 T02 §10 | Bookmarks view                                      | windows-host, display-session | 9     |
+| [ ]    | D08 T02 §11 | Audit log view                                      | windows-host, display-session | 8     |
+| [ ]    | D08 T02 §12 | Export and Report dialogs                           | windows-host, display-session | 9     |
+| [ ]    | D08 T02 §14 | Deleted files view                                  | windows-host, display-session | 9     |
+| [ ]    | D08 T02 §15 | Recent activity view                                | windows-host, display-session | 8     |
+| [ ]    | D08 T02 §16 | Disk map view                                       | windows-host, display-session | 10    |
+| [ ]    | D08 T02 §13 | Navigation, keyboard and accessibility pass         | windows-host, display-session | 8     |
+| [ ]    | D08 T03 §3  | Full parity run across every screen, theme and size | windows-host, display-session | 6     |
 
 ### Phase 8: Release
 
-Sections: 4 | Checklist items: 26
+Sections: 4 | Checklist items: 25
 
 | Status | Reference  | Deliverable                             | Needs                         | Items |
 | ------ | ---------- | --------------------------------------- | ----------------------------- | ----- |
 | [ ]    | D09 T01 §1 | End-to-end acceptance run               | windows-host, display-session | 7     |
 | [ ]    | D09 T01 §2 | Windows installer with the CLI on PATH  | windows-host, display-session | 6     |
 | [ ]    | D09 T01 §3 | User guide                              | none                          | 7     |
-| [ ]    | D09 T01 §4 | Project licence and third-party notices | owner-decision                | 6     |
+| [ ]    | D09 T01 §4 | Project licence and third-party notices | none                          | 5     |
 
 ### Phase 99: Manual, operator only
 
@@ -173,6 +187,6 @@ Sections: 1 | Checklist items: 4
 | ------ | ---------- | ------------------------------------------ | -------- | ----- |
 | [ ]    | D09 T01 §5 | Code signing of the installer and binaries | operator | 4     |
 
-Progress: 0/97 verified sections, 1 ready to run now.
+Progress: 0/111 verified sections, 1 ready to run now.
 
-Checklist: 0/567 items completed (includes Commit items).
+Checklist: 0/701 items completed (includes Commit items).

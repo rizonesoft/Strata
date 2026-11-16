@@ -1,0 +1,46 @@
+# Checks what the repository holds today: the plan's integrity, the kits' own tests and the brand build.
+# The Rust and frontend checks are added by the plan (D00 T01 §3 and D08 T01 §1) when that code exists.
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
+
+jobs:
+  plan:
+    name: plan and design integrity
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - name: The TODO graph is valid
+        run: python scripts/todo-graph.py validate --all
+      - name: The generated plan is current
+        run: python scripts/todo-graph.py plan --check
+      - name: Every mockup has its reference render
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          ui = Path("design/ui")
+          missing = [p.stem for p in ui.glob("*.html") if not (ui / "reference" / f"{p.stem}.png").is_file()]
+          raise SystemExit(f"no reference render for: {missing}" if missing else 0)
+          PY
+      - name: The brand assets build
+        run: |
+          python -m pip install --quiet pillow fonttools
+          python scripts/brand-assets.py
+          git diff --stat --exit-code -- assets/brand/*.svg

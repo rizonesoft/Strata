@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<title>Strata: Audit log</title>
+<link rel="stylesheet" href="fonts.css">
+<link rel="stylesheet" href="../tokens/tokens.css">
+<link rel="stylesheet" href="ui.css">
+<script src="ui.js" defer></script>
+<style>
+.at { grid-template-columns: 170px 120px 150px minmax(0, 1fr) 110px; }
+</style>
+</head>
+<body data-view="audit" data-core="off">
+<main class="content">
+  <div class="page-head"><h1>Audit log</h1><span class="tag ok"><i data-i="shield" class="sm"></i>Log intact · 212 rows, chain verified</span><span class="grow"></span><div class="field"><i data-i="search" class="sm"></i>Filter actions</div><button class="btn"><i data-i="exportIcon"></i>Export as CSV</button></div>
+  <div class="split"><div class="scroll">
+    <div class="thead at"><span>Time (UTC)</span><span>Actor</span><span>Action</span><span>Parameters</span><span>Result</span></div>
+    <div class="tr at"><span class="mono">03-15 11:42:07</span><span>T. Mokoena</span><span class="mono">report.generate</span><span class="mono muted">scope=bookmarked events=7 sha256=1c9e…a7f0</span><span class="ok">ok</span></div>
+    <div class="tr at"><span class="mono">03-15 11:31:50</span><span>T. Mokoena</span><span class="mono">bookmark.note</span><span class="mono muted">bookmark=5 event=1,208,441</span><span class="ok">ok</span></div>
+    <div class="tr at"><span class="mono">03-15 11:30:12</span><span>T. Mokoena</span><span class="mono">bookmark.add</span><span class="mono muted">bookmark=5 event=1,208,441</span><span class="ok">ok</span></div>
+    <div class="tr at"><span class="mono">03-15 10:58:33</span><span>T. Mokoena</span><span class="mono">extract.file</span><span class="mono muted">layer=img0/p2/vss1 mft=48213-6 bytes=184,320 sha256=4be1…09aa</span><span class="ok">ok</span></div>
+    <div class="tr at"><span class="mono">03-15 10:57:02</span><span>T. Mokoena</span><span class="mono">extract.file</span><span class="mono muted">layer=img0/p2 mft=51877-2 recoverability=overwritten</span><span class="accent">refused</span></div>
+    <div class="tr at"><span class="mono">03-15 09:49:55</span><span>T. Mokoena</span><span class="mono">ingest.finish</span><span class="mono muted">files=1,247,466 events=2,418,906 carved=41,266 warnings=3</span><span class="ok">ok</span></div>
+    <div class="tr at"><span class="mono">03-15 08:02:41</span><span>T. Mokoena</span><span class="mono">ingest.start</span><span class="mono muted">snapshots=true carve=true hash_content=false threads=12</span><span class="ok">ok</span></div>
+    <div class="tr at"><span class="mono">03-14 17:02:10</span><span>T. Mokoena</span><span class="mono">ingest.finish</span><span class="mono muted">stage=files</span><span class="accent">cancelled</span></div>
+    <div class="tr at"><span class="mono">03-14 16:40:02</span><span>T. Mokoena</span><span class="mono">ingest.start</span><span class="mono muted">snapshots=true carve=true hash_content=false threads=12</span><span class="ok">ok</span></div>
+    <div class="tr at"><span class="mono">03-14 16:39:48</span><span>T. Mokoena</span><span class="mono">case.create</span><span class="mono muted">name="2026-014 Harbour Freight" image=harbour-ws04.E01 verify=match</span><span class="ok">ok</span></div>
+  </div></div>
+</main>
+</body>
+</html>

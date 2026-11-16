@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<title>Strata: Bookmarks</title>
+<link rel="stylesheet" href="fonts.css">
+<link rel="stylesheet" href="../tokens/tokens.css">
+<link rel="stylesheet" href="ui.css">
+<script src="ui.js" defer></script>
+<style>
+.bt { grid-template-columns: 18px 150px 150px minmax(0, 1fr) minmax(0, 1.3fr) 96px; }
+.bt.tr { height: 44px; }
+.strip { position: relative; height: 34px; border-radius: var(--radius-sm); background: var(--color-surface); border: 1px solid var(--color-border); }
+.strip i { position: absolute; top: 4px; bottom: 4px; width: 3px; border-radius: 2px; background: var(--color-accent); }
+</style>
+</head>
+<body data-view="bookmarks" data-core="all">
+<main class="content">
+  <div class="page-head"><h1>Bookmarks</h1><span class="muted">7 events marked for the report</span><span class="grow"></span><button class="btn primary"><i data-i="report"></i>Report from bookmarks</button></div>
+  <div class="pad" style="padding-top: 0">
+    <div class="label" style="margin-bottom: var(--space-2)">Where the bookmarks fall, 14 March 08:00 to 11:00</div>
+    <div class="strip" role="img" aria-label="Bookmarks on the timeline: one at 09:30, five between 09:41 and 10:12, one at 10:31"><i style="left: 50%"></i><i style="left: 56.1%"></i><i style="left: 56.4%"></i><i style="left: 65.5%"></i><i style="left: 68%"></i><i style="left: 70%"></i><i style="left: 73.5%"></i></div>
+    <div class="row mono muted" style="justify-content: space-between; font-size: var(--text-xs); margin-top: 4px"><span>08:00</span><span>09:00</span><span>10:00</span><span>11:00</span></div>
+  </div>
+  <div class="split"><div class="scroll">
+    <div class="thead bt"><span></span><span>Event time (UTC)</span><span>Kind</span><span>Summary</span><span>Note</span><span></span></div>
+    <div class="tr bt"><span data-g="1100"></span><span class="mono">03-14 09:30:10</span><span><span class="tag"><span class="dot" style="--c: var(--kind-log)"></span>log.event</span></span><span>Security-Auditing 4624, logon type 10</span><span class="muted">Remote logon as svc-backup from 10.20.4.117.</span><span class="row"><button class="btn ghost icon" aria-label="Go to event"><i data-i="timeline" class="sm"></i></button><button class="btn ghost icon" aria-label="Remove bookmark"><i data-i="deleted" class="sm"></i></button></span></div>
+    <div class="tr bt"><span data-g="1001"></span><span class="mono">03-14 09:41:55</span><span><span class="tag"><span class="dot" style="--c: var(--kind-journal)"></span>usn.change</span></span><span>payroll-2025.csv RENAME_OLD_NAME</span><span class="muted">Start of the rename.</span><span class="row"><button class="btn ghost icon" aria-label="Go to event"><i data-i="timeline" class="sm"></i></button><button class="btn ghost icon" aria-label="Remove bookmark"><i data-i="deleted" class="sm"></i></button></span></div>
+    <div class="tr bt sel"><span data-g="0001"></span><span class="mono">03-14 09:58:03</span><span><span class="tag accent"><span class="dot" style="--c: var(--kind-journal)"></span>usn.change</span></span><span>payroll-old.csv FILE_DELETE</span><span><div class="field value" style="width: 100%">Deleted 16 minutes after the rename. Journal entry survives only in free space.</div></span><span class="row"><button class="btn ghost icon" aria-label="Go to event"><i data-i="timeline" class="sm"></i></button><button class="btn ghost icon" aria-label="Remove bookmark"><i data-i="deleted" class="sm"></i></button></span></div>
+    <div class="tr bt"><span data-g="1000"></span><span class="mono">03-14 10:02:17</span><span><span class="tag"><span class="dot" style="--c: var(--kind-registry)"></span>registry.key_written</span></span><span>SOFTWARE\...\CurrentVersion\Run</span><span class="muted">Run key written minutes before the service install.</span><span class="row"><button class="btn ghost icon" aria-label="Go to event"><i data-i="timeline" class="sm"></i></button><button class="btn ghost icon" aria-label="Remove bookmark"><i data-i="deleted" class="sm"></i></button></span></div>
+    <div class="tr bt"><span data-g="1000"></span><span class="mono">03-14 10:05:40</span><span><span class="tag"><span class="dot" style="--c: var(--kind-log)"></span>log.event</span></span><span>Service Control Manager 7045</span><span class="muted">Helper Service installed, binary in ProgramData.</span><span class="row"><button class="btn ghost icon" aria-label="Go to event"><i data-i="timeline" class="sm"></i></button><button class="btn ghost icon" aria-label="Remove bookmark"><i data-i="deleted" class="sm"></i></button></span></div>
+    <div class="tr bt"><span data-g="1000"></span><span class="mono">03-14 10:08:30</span><span><span class="tag"><span class="dot" style="--c: var(--kind-shortcut)"></span>shortcut.target</span></span><span>transfer-batch-0314.zip on E:</span><span class="muted">Archive opened from a removable volume.</span><span class="row"><button class="btn ghost icon" aria-label="Go to event"><i data-i="timeline" class="sm"></i></button><button class="btn ghost icon" aria-label="Remove bookmark"><i data-i="deleted" class="sm"></i></button></span></div>
+    <div class="tr bt"><span data-g="1000"></span><span class="mono">03-14 10:12:55</span><span><span class="tag"><span class="dot" style="--c: var(--kind-log)"></span>log.event</span></span><span>Event log cleared: Application</span><span class="muted">Add a note</span><span class="row"><button class="btn ghost icon" aria-label="Go to event"><i data-i="timeline" class="sm"></i></button><button class="btn ghost icon" aria-label="Remove bookmark"><i data-i="deleted" class="sm"></i></button></span></div>
+  </div></div>
+</main>
+</body>
+</html>

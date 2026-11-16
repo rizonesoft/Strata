@@ -10,7 +10,8 @@ Build Strata, a read-only Windows digital forensics suite that drills through th
 
 - [docs/plans/2026-11-16-strata-foundation.md](./docs/plans/2026-11-16-strata-foundation.md): scope of version 1, the technology stack, the architecture, the case store, integrity rules and milestones. Read it before any change.
 - [design/SPEC.md](./design/SPEC.md): every command of the `strata` command line and every screen and control of the desktop app.
-- [todo/implementation-plan.md](./todo/implementation-plan.md): the generated plan. The TODO files under `todo/` carry the two documents above out.
+- [design/CONTRACT.md](./design/CONTRACT.md): binds the desktop app to the approved mockups in `design/ui/` 1:1, and says how that is proved. The design is fixed: to change the look, change the mockup first.
+- [todo/implementation-plan.md](./todo/implementation-plan.md): the generated plan. The TODO files under `todo/` carry the documents above out.
 
 ## Technology stack
 
@@ -20,6 +21,14 @@ Build Strata, a read-only Windows digital forensics suite that drills through th
 - Dependencies carry permissive licences only (MIT, Apache-2.0, BSD, ISC, Zlib, Unicode). No GPL or AGPL crate.
 - Evidence is read-only. No code opens an image for writing, and no parser may panic on malformed input.
 - Integration tests read the fixture image built by `fixtures/build-fixture.ps1`. A test that needs it fails when it is missing; it never skips.
+- Strata is licensed under Apache-2.0. The brand is in `assets/brand` (built by `scripts/brand-assets.py`) and the bundled fonts in `assets/fonts`.
+
+## Campaign runs
+
+- A campaign is started by its operator with `pwsh scripts/start-run.ps1` or the desktop shortcuts it installs (`Strata Claude campaign`, `Strata Carbon campaign`). Nothing restarts a run.
+- The launcher starts the run elevated (owner decision 2026-11-17), because D00 T01 §4 builds the fixture image and that needs administrator rights. The plan marks such sections with the Need `elevated`, probed in `todo/plan.json`.
+- An elevated session uses its rights only for what a plan section names (mounting the fixture VHD, creating its shadow copies). It changes nothing else outside the repository, installs nothing system-wide that a section does not name, and never disables a security control.
+- The unattended kit's tmux runner (`scripts/unattended-run.py`) is installed but runs in WSL, which lacks the Windows toolchain this project builds with. Use the launcher above.
 
 ## Working rules
 

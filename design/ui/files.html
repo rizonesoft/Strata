@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<title>Strata: Files</title>
+<link rel="stylesheet" href="fonts.css">
+<link rel="stylesheet" href="../tokens/tokens.css">
+<link rel="stylesheet" href="ui.css">
+<script src="ui.js" defer></script>
+<style>
+.ft { grid-template-columns: 18px 18px minmax(0, 1fr) 72px 118px 46px; }
+.tree { width: 184px; flex: none; border-right: 1px solid var(--color-border); padding: var(--space-3); display: flex; flex-direction: column; gap: 2px; }
+.tree a { height: 28px; display: flex; align-items: center; gap: 6px; border-radius: var(--radius-sm); color: var(--color-text-muted); text-decoration: none; }
+.tree a.sel { background: var(--color-surface-3); color: var(--color-text); }
+</style>
+</head>
+<body data-view="files" data-core="vss1">
+<main class="content">
+  <div class="page-head">
+    <h1>Files</h1>
+    <nav class="row mono" aria-label="Path"><a class="muted" href="#">\</a><i data-i="right" class="sm muted"></i><a class="muted" href="#">Users</a><i data-i="right" class="sm muted"></i><a class="muted" href="#">fixture</a><i data-i="right" class="sm muted"></i><span>Documents</span></nav>
+    <span class="grow"></span>
+    <label class="check on"><i></i>Show deleted</label>
+    <div class="field"><i data-i="filter" class="sm"></i>Filter by name</div>
+  </div>
+  <div class="split">
+    <nav class="tree mono" aria-label="Folders">
+      <a href="#" style="padding-left: 4px"><i data-i="down" class="sm"></i><i data-i="files" class="sm"></i>\</a>
+      <a href="#" style="padding-left: 18px"><i data-i="right" class="sm"></i><i data-i="files" class="sm"></i>$Extend</a>
+      <a href="#" style="padding-left: 18px"><i data-i="right" class="sm"></i><i data-i="files" class="sm"></i>ProgramData</a>
+      <a href="#" style="padding-left: 18px"><i data-i="down" class="sm"></i><i data-i="files" class="sm"></i>Users</a>
+      <a href="#" style="padding-left: 32px"><i data-i="down" class="sm"></i><i data-i="files" class="sm"></i>fixture</a>
+      <a href="#" style="padding-left: 46px"><i data-i="right" class="sm"></i><i data-i="files" class="sm"></i>Desktop</a>
+      <a href="#" class="sel" style="padding-left: 46px"><i data-i="right" class="sm"></i><i data-i="folderOpen" class="sm accent"></i>Documents</a>
+      <a href="#" style="padding-left: 46px"><i data-i="right" class="sm"></i><i data-i="files" class="sm"></i>Recent</a>
+      <a href="#" style="padding-left: 18px"><i data-i="right" class="sm"></i><i data-i="files" class="sm"></i>Windows</a>
+    </nav>
+    <div class="scroll">
+      <div class="thead ft"><span></span><span></span><span>Name</span><span class="num">Size</span><span>Modified</span><span>Flags</span></div>
+      <div class="tr ft"><span data-g="1110"></span><i data-i="files" class="sm muted"></i><span>archive</span><span class="num mono"></span><span class="mono muted">02-20 10:01:12</span><span></span></div>
+      <div class="tr ft"><span data-g="1110"></span><i data-i="file" class="sm muted"></i><span>board-minutes-feb.docx</span><span class="num mono">48,112</span><span class="mono muted">02-27 15:20:44</span><span></span></div>
+      <div class="tr ft"><span data-g="1110"></span><i data-i="file" class="sm muted"></i><span>contracts-index.xlsx</span><span class="num mono">22,904</span><span class="mono muted">03-09 09:12:30</span><span></span></div>
+      <div class="tr ft sel"><span data-g="0111"></span><i data-i="file" class="sm accent"></i><span>payroll-2025.csv</span><span class="num mono">184,320</span><span class="mono accent">01-05 12:00:00</span><span><span class="tag accent">time</span></span></div>
+      <div class="tr ft"><span data-g="0110"></span><i data-i="file" class="sm muted"></i><span>payroll-notes.txt</span><span class="num mono">1,208</span><span class="mono muted">03-11 16:40:02</span><span><span class="tag">ads</span></span></div>
+      <div class="tr ft"><span data-g="1110"></span><i data-i="file" class="sm muted"></i><span>q4-forecast.xlsx</span><span class="num mono">96,440</span><span class="mono muted">12-18 14:05:51</span><span><span class="tag">lznt1</span></span></div>
+      <div class="tr ft"><span data-g="0011"></span><i data-i="deleted" class="sm muted"></i><span class="gone">supplier-list.old</span><span class="num mono">12,076</span><span class="mono muted">11-02 08:00:00</span><span><span class="tag danger">del</span></span></div>
+      <div class="tr ft"><span data-g="0010"></span><i data-i="deleted" class="sm muted"></i><span class="gone">~$ard-minutes-feb.docx</span><span class="num mono">162</span><span class="mono muted">02-27 15:20:40</span><span><span class="tag danger">del</span></span></div>
+    </div>
+    <aside class="pane" aria-label="File details">
+      <div class="row"><i data-i="file" class="lg accent"></i><div class="grow"><h2>payroll-2025.csv</h2><div class="mono muted">MFT 48213-6 · 184,320 bytes</div></div></div>
+      <div class="col" style="gap: var(--space-1)">
+        <div class="label">This file through the core</div>
+        <div class="tag" style="height: 26px; justify-content: space-between">Live: renamed, then deleted <span>gone</span></div>
+        <div class="tag" style="height: 26px; justify-content: space-between; background: var(--layer-snap-1); color: var(--layer-ink)">Shadow copy 2: content changed <span>201,728 B</span></div>
+        <div class="tag" style="height: 32px; margin-left: 12px; justify-content: space-between; background: var(--color-accent); color: var(--color-accent-ink); font-weight: 600">Shadow copy 1: shown here <span>184,320 B</span></div>
+        <div class="tag" style="height: 26px; justify-content: space-between">Unallocated: 1 carved record <span>0x1A3F4C180</span></div>
+      </div>
+      <div class="notice"><i data-i="warn"></i><span>The two modified times disagree by 65 days. The standard information time can be set by a user; the file name time usually cannot.</span></div>
+      <div class="mono" style="display: grid; grid-template-columns: 76px 1fr 1fr; gap: 4px 8px; font-size: var(--text-xs)">
+        <span></span><span class="muted">$STANDARD_INFO</span><span class="muted">$FILE_NAME</span>
+        <span class="muted">Created</span><span>03-02 08:14:09</span><span>03-02 08:14:09</span>
+        <span class="muted">Modified</span><span class="accent">01-05 12:00:00</span><span>03-11 16:42:51</span>
+        <span class="muted">MFT mod.</span><span>03-11 16:42:51</span><span>03-11 16:42:51</span>
+        <span class="muted">Accessed</span><span>03-12 17:55:20</span><span>03-02 08:14:09</span>
+      </div>
+      <div class="row"><span class="label grow">Hex · unnamed stream</span><button class="chip" style="height: 24px">:$DATA<i data-i="down" class="sm"></i></button></div>
+      <div class="well hex">0000  65 6D 70 6C 6F 79 65 65  employee
+0008  5F 69 64 2C 6E 61 6D 65  _id,name
+0010  2C 67 72 61 64 65 2C 67  ,grade,g
+0018  72 6F 73 73 0D 0A 31 30  ross..10</div>
+      <span class="grow"></span>
+      <div class="row">
+        <button class="btn primary grow"><i data-i="extract"></i>Extract</button>
+        <button class="btn grow"><i data-i="history"></i>History</button>
+        <button class="btn grow"><i data-i="timeline"></i>Events</button>
+      </div>
+    </aside>
+  </div>
+</main>
+</body>
+</html>

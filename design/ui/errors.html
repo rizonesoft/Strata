@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<title>Strata: Case error states</title>
+<link rel="stylesheet" href="fonts.css">
+<link rel="stylesheet" href="../tokens/tokens.css">
+<link rel="stylesheet" href="ui.css">
+<script src="ui.js" defer></script>
+<style>
+.errs { flex: 1; display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: var(--space-6); padding: var(--space-8) 56px; align-content: start; }
+.err { gap: var(--space-4); padding: var(--space-6); }
+.err h2 { font: 700 var(--text-xl) var(--font-display); }
+.small { display: grid; gap: var(--space-4); }
+</style>
+</head>
+<body data-chrome="bare">
+<main class="errs">
+  <section class="card err" aria-label="Evidence moved">
+    <div class="row"><i data-i="locate" class="lg accent"></i><h2>The evidence image is not where this case left it</h2></div>
+    <p class="muted">The case opened, but Strata cannot read the image. Everything already stored in the case is still here. Locate the image to read file content again.</p>
+    <dl class="kv"><dt>Recorded path</dt><dd class="mono">E:\Evidence\2026-014\harbour-ws04.E01</dd><dt>Expected SHA-256</dt><dd class="mono">9f2c41d07a6b…e41b77c0a3d5</dd><dt>Size</dt><dd class="mono">238.4 GB in 4 segments</dd></dl>
+    <div class="well col" style="gap: var(--space-2)"><div class="row"><span class="grow">Checking <span class="mono">G:\Evidence\harbour-ws04.E01</span></span><span class="mono muted">31% · 6 minutes left</span><button class="btn ghost">Cancel</button></div><div class="progress"><i style="width: 31%"></i></div><small class="muted">The new file is accepted only if its hash matches.</small></div>
+    <div class="row"><button class="btn primary lg"><i data-i="folderOpen"></i>Locate image</button><button class="btn lg">Continue without evidence</button><span class="grow"></span><button class="btn ghost lg">Back to Start</button></div>
+  </section>
+  <div class="small">
+    <section class="card err" aria-label="Wrong image"><div class="row"><i data-i="warn" class="lg danger"></i><h2 style="font-size: var(--text-lg)">That is a different image</h2></div>
+      <dl class="kv"><dt>Expected</dt><dd class="mono">9f2c41d07a6b…a3d5</dd><dt>This file</dt><dd class="mono danger">02be7714c9aa…51f0</dd></dl><p class="muted">The case was not changed.</p><div class="row"><button class="btn">Locate another</button></div></section>
+    <section class="card err" aria-label="Not a case"><div class="row"><i data-i="files" class="lg muted"></i><h2 style="font-size: var(--text-lg)">This folder is not a Strata case</h2></div>
+      <p class="muted"><span class="mono">D:\Cases\scratch</span> has no <span class="mono">case.duckdb</span>. Pick the folder that holds it, or make a new case here.</p><div class="row"><button class="btn">Open another folder</button><button class="btn">New case</button></div></section>
+    <section class="card err" aria-label="Newer case"><div class="row"><i data-i="info" class="lg" style="color: var(--color-info)"></i><h2 style="font-size: var(--text-lg)">This case needs a newer Strata</h2></div>
+      <p class="muted">The case uses schema 3. This build reads schema 1. Update Strata to open it; nothing was changed.</p><div class="row"><button class="btn ghost">Back to Start</button></div></section>
+    <section class="card err" aria-label="Unsupported image"><div class="row"><i data-i="evidence" class="lg muted"></i><h2 style="font-size: var(--text-lg)">Strata cannot read this image yet</h2></div>
+      <p class="muted">The file starts with <span class="mono">vhdxfile</span>, a VHDX container. Supported: raw, split raw, fixed VHD and E01.</p></section>
+  </div>
+</main>
+</body>
+</html>

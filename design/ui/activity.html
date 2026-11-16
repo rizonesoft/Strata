@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<title>Strata: Recent activity</title>
+<link rel="stylesheet" href="fonts.css">
+<link rel="stylesheet" href="../tokens/tokens.css">
+<link rel="stylesheet" href="ui.css">
+<script src="ui.js" defer></script>
+<style>
+.days { display: grid; grid-template-columns: repeat(14, minmax(0, 1fr)); gap: var(--space-1); }
+.day { height: 52px; border-radius: var(--radius-md); border: 1px solid var(--color-border); background: var(--color-surface); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; font-size: var(--text-xs); color: var(--color-text-muted); }
+.day b { font: 600 var(--text-md) var(--font-mono); color: var(--color-text); }
+.day.sel { border-color: var(--color-accent); background: var(--color-accent-soft); }
+.list > div { display: grid; grid-template-columns: 62px 18px minmax(0, 1fr) auto; gap: var(--space-2); align-items: center; height: 30px; border-bottom: 1px solid var(--color-surface-2); font-size: var(--text-sm); }
+.list > div > span { min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+</style>
+</head>
+<body data-view="activity" data-core="all">
+<main class="content">
+  <div class="page-head"><h1>Recent activity</h1><span class="muted">What the user and the system did, read from programs, logons, shortcuts and services</span></div>
+  <div class="scroll pad" style="padding-top: 0">
+    <div class="days" role="listbox" aria-label="Day">
+      <button class="day"><span>Sun</span><b>1</b></button><button class="day"><span>Mon</span><b>2</b></button><button class="day"><span>Tue</span><b>3</b></button><button class="day"><span>Wed</span><b>4</b></button><button class="day"><span>Thu</span><b>5</b></button><button class="day"><span>Fri</span><b>6</b></button><button class="day"><span>Sat</span><b>7</b></button>
+      <button class="day"><span>Sun</span><b>8</b></button><button class="day"><span>Mon</span><b>9</b></button><button class="day"><span>Tue</span><b>10</b></button><button class="day"><span>Wed</span><b>11</b></button><button class="day"><span>Thu</span><b>12</b></button><button class="day"><span>Fri</span><b>13</b></button><button class="day sel" aria-selected="true"><span>Sat</span><b>14</b></button>
+    </div>
+    <div class="cards" style="grid-template-columns: repeat(2, minmax(0, 1fr)); margin-top: var(--space-4)">
+      <section class="card" aria-label="Programs run">
+        <div class="row"><i data-i="program" style="color: var(--kind-program)"></i><h3 class="grow">Programs run on 14 March</h3><span class="muted">from prefetch</span></div>
+        <div data-chart="hbars" data-label="Programs by run count" data-values="EXCEL.EXE:14:--kind-program:14 runs|7ZG.EXE:6:--layer-unalloc:6 runs, first seen|CMD.EXE:5:--kind-program:5 runs|SVCHELPER.EXE:3:--layer-unalloc:3 runs, first seen|MSEDGE.EXE:3:--kind-program:3 runs|SDELETE64.EXE:1:--layer-unalloc:1 run, first seen"></div>
+        <p class="muted" style="font-size: var(--text-sm)">Ochre bars are programs that appear in no shadow copy: they first ran after 13 March 18:00.</p>
+      </section>
+      <section class="card" aria-label="Logons">
+        <div class="row"><i data-i="user" style="color: var(--kind-log)"></i><h3 class="grow">Logons</h3><span class="muted">Security log, event 4624</span></div>
+        <div class="list">
+          <div><span class="mono">08:51:12</span><i data-i="user" class="sm muted"></i><span>fixture, interactive (type 2)</span><span class="mono muted">console</span></div>
+          <div><span class="mono">09:30:10</span><i data-i="user" class="sm accent"></i><span>svc-backup, remote desktop (type 10)</span><span class="mono accent">10.20.4.117</span></div>
+          <div><span class="mono">09:57:44</span><i data-i="user" class="sm accent"></i><span>svc-backup, remote desktop (type 10)</span><span class="mono accent">10.20.4.117</span></div>
+          <div><span class="mono">10:31:05</span><i data-i="user" class="sm muted"></i><span>fixture, unlock (type 7)</span><span class="mono muted">console</span></div>
+        </div>
+      </section>
+      <section class="card" aria-label="Files opened">
+        <div class="row"><i data-i="link" style="color: var(--kind-shortcut)"></i><h3 class="grow">Files opened</h3><span class="muted">from shortcuts in Recent</span></div>
+        <div class="list">
+          <div><span class="mono">09:21:47</span><i data-i="file" class="sm muted"></i><span>D:\Finance\q1-forecast.xlsx</span><span class="mono muted">vol 6C1F-22A0</span></div>
+          <div><span class="mono">09:40:13</span><i data-i="file" class="sm muted"></i><span>C:\Users\fixture\Documents\payroll-2025.csv</span><span class="mono muted">local</span></div>
+          <div><span class="mono">10:08:30</span><i data-i="file" class="sm accent"></i><span>E:\out\transfer-batch-0314.zip</span><span class="mono accent">removable</span></div>
+        </div>
+      </section>
+      <section class="card" aria-label="Persistence and services">
+        <div class="row"><i data-i="registry" style="color: var(--kind-registry)"></i><h3 class="grow">Services and start-up changes</h3><span class="muted">System log and registry</span></div>
+        <div class="list">
+          <div><span class="mono">10:02:17</span><i data-i="registry" class="sm muted"></i><span>Run key written: SOFTWARE\...\CurrentVersion\Run</span><span class="mono muted">registry</span></div>
+          <div><span class="mono">10:05:40</span><i data-i="log" class="sm accent"></i><span>Service installed: Helper Service (svchelper.exe)</span><span class="mono accent">7045</span></div>
+          <div><span class="mono">10:12:55</span><i data-i="log" class="sm muted"></i><span>Event log cleared: Application</span><span class="mono muted">104</span></div>
+        </div>
+      </section>
+    </div>
+  </div>
+</main>
+</body>
+</html>

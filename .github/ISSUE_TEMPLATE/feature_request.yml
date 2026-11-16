@@ -1,0 +1,21 @@
+name: Something is missing
+description: An artifact, format, view or command Strata should have.
+labels: [enhancement]
+body:
+  - type: textarea
+    id: job
+    attributes:
+      label: What would an examiner do with it?
+      description: The task, not the solution.
+    validations:
+      required: true
+  - type: textarea
+    id: scope
+    attributes:
+      label: Is it inside version 1?
+      description: The foundation plan lists what version 1 leaves out. Say whether this changes that list.
+  - type: textarea
+    id: sources
+    attributes:
+      label: Sources
+      description: Format documentation or references that describe it.

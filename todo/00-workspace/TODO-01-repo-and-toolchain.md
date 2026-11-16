@@ -11,7 +11,7 @@ track: M0
 
 > **Goal:** The repository builds as one Cargo workspace with every crate from the foundation plan in place, one set of commands checks it, and a fixture disk image with a manifest of ground truth exists for every later integration test.
 
-> **Current state:** Measured 2026-11-16. The repository holds the Conclave kits (`base`, `todo`, `reviewer`), `docs/plans/2026-11-16-strata-foundation.md`, `design/SPEC.md` and `idea.txt`. There is no source code. `rustc`, `cargo`, `rustup` and the MSVC compiler `cl` are not installed on this machine. Node 24.22.2, pnpm 11.10.0 and Python 3.14.10 are installed.
+> **Current state:** Measured 2026-11-16. The repository holds the Conclave kits (`base`, `todo`, `reviewer`), `docs/plans/2026-11-16-strata-foundation.md`, `design/SPEC.md` and `idea.txt`. There is no source code. Corrected 2026-11-17: rustup 1.29.3 and the Visual Studio 2022 C++ build tools (MSVC 14.44) were installed with `winget` that day, so no section here needs a person. `~/.cargo/bin` holds the rustup proxies; a default toolchain and `cargo-deny` are still to be set by §1. Node 24.22.2, pnpm 11.10.0 and Python 3.14.10 are installed. The repository also holds the brand assets (`assets/brand`), the fonts (`assets/fonts`) and the chosen design (`design/ui`, `design/tokens`, `design/CONTRACT.md`).
 
 ## Inputs
 
@@ -40,10 +40,10 @@ track: M0
 
 ## 1. Rust and MSVC toolchain on the workstation
 
-Nothing can compile until Rust and a C++ compiler exist. The `duckdb` crate with its `bundled` feature compiles DuckDB from C++ source, so the MSVC build tools are required, not optional. Their installer raises a UAC prompt, which is why a person must be present.
+Nothing can compile until Rust and a C++ compiler exist. The `duckdb` crate with its `bundled` feature compiles DuckDB from C++ source, so the MSVC build tools are required, not optional. Both installers were run on 2026-11-17 (rustup 1.29.3, build tools with MSVC 14.44); the two install items below are met by verifying, and reinstall only when the check fails.
 
 **Phase:** 0
-**Needs:** windows-host, attended
+**Needs:** windows-host
 **Surface:** no
 
 **Build order:**
@@ -100,6 +100,7 @@ One command set decides whether the tree is clean. The licence check exists beca
 - [ ] Prove the licence check can fail by adding `nt-hive` to `strata-core` in a scratch copy of the tree. Done when: `cargo deny check licenses` exits non-zero naming GPL-2.0-or-later, and the repository itself is unchanged.
 - [ ] Add `[workspace.lints]` to the root `Cargo.toml` with `unsafe_code = "forbid"` for rust and `unwrap_used = "deny"` and `panic = "deny"` for clippy, and `[lints] workspace = true` in every crate (foundation plan section 4.4: a parser never panics). Write `clippy.toml` with `allow-unwrap-in-tests = true` and `allow-panic-in-tests = true`, and allow `panic` in `strata-testkit` alone, whose locators panic on purpose. Done when: `cargo clippy --workspace --all-targets -- -D warnings` exits 0, and a temporary `.unwrap()` in `strata-core` library code makes it fail.
 - [ ] Write `rustfmt.toml` with `max_width = 110`. Done when: `cargo fmt --all --check` exits 0.
+- [ ] Extend `.github/workflows/ci.yml` (it checks the plan and the brand build today) with a `rust` job on `windows-latest` running `cargo fmt --all --check`, `cargo clippy --workspace --all-targets -- -D warnings`, `cargo deny check licenses` and the tests that need no fixture image (`cargo test --workspace --lib`), cached with `Swatinem/rust-cache`. Done when: `python scripts/ci_status.py` reports the workflow green on main after the push.
 - [ ] Add a `## Verification commands` section to `AGENTS.md` listing the commands of foundation plan section 7 and where the code lives. Done when: the section names `cargo fmt`, `cargo clippy`, `cargo deny` and `cargo test` with their exact arguments.
 - [ ] Commit: `build: format, lint and licence checks`
 
@@ -107,10 +108,10 @@ One command set decides whether the tree is clean. The licence check exists beca
 
 ## 4. Fixture image build script and manifest
 
-Integration tests need one image whose every fact is known: which files exist, which were deleted, what each shadow copy held. Building it by script from an elevated prompt makes the ground truth reproducible. The image is about 1 GB because Windows will not create a shadow copy on a much smaller volume, so it is built locally and never committed.
+Integration tests need one image whose every fact is known: which files exist, which were deleted, what each shadow copy held. Building it by script from an elevated prompt makes the ground truth reproducible. The image is about 1 GB because Windows will not create a shadow copy on a much smaller volume, so it is built locally and never committed. Mounting a VHD and creating a shadow copy need administrator rights: the campaign launcher (`scripts/start-run.ps1`) starts the run elevated for this section (owner decision 2026-11-17), and the `elevated` Need holds it out of any session that is not.
 
 **Phase:** 0
-**Needs:** windows-host, attended
+**Needs:** windows-host, elevated
 **Surface:** no
 
 **Build order:**

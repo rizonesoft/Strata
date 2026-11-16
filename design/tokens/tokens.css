@@ -1,0 +1,120 @@
+/* Strata design tokens. The one source of every colour, size and radius in the desktop app and the mockups.
+   Dark is the default theme; light redefines the same names. No component may use a raw colour value. */
+:root,
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  /* ground and surfaces */
+  --color-bg: #0e1420;
+  --color-surface: #141c2b;
+  --color-surface-2: #1a2333;
+  --color-surface-3: #263247;
+  --color-border: #263247;
+  --color-border-strong: #3a4a64;
+  /* text */
+  --color-text: #f5f6f8;
+  --color-text-muted: #a9b6c8;
+  --color-text-faint: #8593a8;
+  /* the accent: selection, the layer in focus, anything out of line */
+  --color-accent: #e0a340;
+  --color-accent-ink: #0e1420;
+  --color-accent-soft: #3a2f1a;
+  --color-accent-text: #e0a340;
+  --color-focus: #f2c77a;
+  /* meaning */
+  --color-ok: #7fd1a8;
+  --color-warn: #e0a340;
+  --color-danger: #f0857a;
+  --color-info: #8fb8f0;
+  /* the layers of the core, newest to oldest, then unallocated */
+  --layer-live: #c9d3e0;
+  --layer-snap-1: #8e9bb0;
+  --layer-snap-2: #5b6b82;
+  --layer-snap-3: #445166;
+  --layer-unalloc: #e0a340;
+  --layer-off: #263247;
+  --layer-ink: #0e1420;
+  /* event families, for charts */
+  --kind-file: #c9d3e0;
+  --kind-journal: #8fb8f0;
+  --kind-log: #7fd1a8;
+  --kind-registry: #c7a6f5;
+  --kind-program: #f0a882;
+  --kind-shortcut: #9ed8e6;
+  --scrim: rgba(5, 8, 14, 0.66);
+  --shadow-dialog: 0 24px 64px rgba(0, 0, 0, 0.5);
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+  --color-bg: #f5f6f8;
+  --color-surface: #ffffff;
+  --color-surface-2: #eef1f5;
+  --color-surface-3: #e0e6ee;
+  --color-border: #d5dbe4;
+  --color-border-strong: #a9b6c8;
+  --color-text: #0e1420;
+  --color-text-muted: #4a5568;
+  --color-text-faint: #5f6b7d;
+  --color-accent: #e0a340;
+  --color-accent-ink: #0e1420;
+  --color-accent-soft: #fdf3df;
+  --color-accent-text: #6b4508;
+  --color-focus: #8a5a0b;
+  --color-ok: #17694a;
+  --color-warn: #6b4508;
+  --color-danger: #b3261e;
+  --color-info: #1f5fae;
+  --layer-live: #3d4a5e;
+  --layer-snap-1: #5b6b82;
+  --layer-snap-2: #8e9bb0;
+  --layer-snap-3: #b4bfce;
+  --layer-unalloc: #e0a340;
+  --layer-off: #e0e6ee;
+  --layer-ink: #ffffff;
+  --kind-file: #3d4a5e;
+  --kind-journal: #1f5fae;
+  --kind-log: #17694a;
+  --kind-registry: #6b3fb0;
+  --kind-program: #b3541e;
+  --kind-shortcut: #0e6f85;
+  --scrim: rgba(14, 20, 32, 0.4);
+  --shadow-dialog: 0 24px 64px rgba(14, 20, 32, 0.25);
+}
+
+:root {
+  /* type */
+  --font-display: "Space Grotesk", "Segoe UI", system-ui, sans-serif;
+  --font-ui: "Inter", "Segoe UI", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", "Cascadia Mono", Consolas, monospace;
+  --text-xs: 11px;
+  --text-sm: 12px;
+  --text-md: 13px;
+  --text-lg: 15px;
+  --text-xl: 20px;
+  --text-2xl: 28px;
+  --tracking-label: 0.08em;
+  --tracking-wordmark: 0.14em;
+  /* space: a 4 px scale */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  /* shape */
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 10px;
+  /* fixed measures of the frame */
+  --size-topbar: 48px;
+  --size-sidebar: 196px;
+  --size-sidebar-collapsed: 56px;
+  --size-core: 176px;
+  --size-core-collapsed: 44px;
+  --size-pane: 360px;
+  --size-statusbar: 26px;
+  --size-row: 32px;
+  --size-control: 32px;
+  --size-control-lg: 40px;
+}

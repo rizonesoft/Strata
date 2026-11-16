@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<title>Strata: Settings</title>
+<link rel="stylesheet" href="fonts.css">
+<link rel="stylesheet" href="../tokens/tokens.css">
+<link rel="stylesheet" href="ui.css">
+<script src="ui.js" defer></script>
+<style>
+.set { display: grid; grid-template-columns: minmax(0, 1fr) 250px 52px; gap: var(--space-3); align-items: center; padding: var(--space-3) 0; border-bottom: 1px solid var(--color-border); }
+.set small { display: block; color: var(--color-text-muted); font-size: var(--text-sm); }
+.set a { color: var(--color-text-muted); font-size: var(--text-sm); }
+.seg3 { display: grid; grid-template-columns: repeat(3, 1fr); border: 1px solid var(--color-border-strong); border-radius: var(--radius-md); overflow: hidden; }
+.seg3 button { height: var(--size-control); border: 0; background: var(--color-surface); color: var(--color-text-muted); }
+.seg3 button.on { background: var(--color-accent); color: var(--color-accent-ink); font-weight: 600; }
+</style>
+</head>
+<body data-chrome="bare">
+<main class="grow"></main>
+<div class="scrim" style="display: flex; gap: var(--space-6); align-items: flex-start; justify-content: center; padding-top: 56px">
+  <div class="dialog" role="dialog" aria-labelledby="s" style="width: 640px">
+    <header><h2 id="s">Settings</h2><a href="#about" class="muted">About Strata</a><button class="btn ghost icon" aria-label="Close"><i data-i="close"></i></button></header>
+    <div class="body" style="gap: 0; padding-top: var(--space-3)">
+      <div class="set"><span><b>Time zone</b><small>Every time on screen and in reports</small></span><div class="field value"><span class="grow">UTC</span><i data-i="down" class="sm"></i></div><a href="#">Reset</a></div>
+      <div class="set"><span><b>Timestamp format</b><small>ISO 8601 sorts and copies cleanly</small></span><div class="field value"><span class="grow mono">2026-03-14 09:58:03</span><i data-i="down" class="sm"></i></div><a href="#">Reset</a></div>
+      <div class="set"><span><b>Theme</b><small>System follows Windows</small></span><div class="seg3"><button>System</button><button>Light</button><button class="on">Dark</button></div><a href="#">Reset</a></div>
+      <div class="set"><span><b>Worker threads</b><small>Used by ingest. This machine has 16 cores</small></span><div class="row"><div class="progress grow"><i style="width: 75%"></i></div><span class="mono">12</span></div><a href="#">Reset</a></div>
+      <div class="set"><span><b>Hex preview size</b><small>Bytes shown in the Files details pane</small></span><div class="field value"><span class="grow mono">4 KB</span><i data-i="down" class="sm"></i></div><a href="#">Reset</a></div>
+      <div class="set" style="border: 0"><span><b>Default examiner</b><small>Filled in on new cases</small></span><div class="field value">T. Mokoena</div><a href="#">Reset</a></div>
+    </div>
+    <footer><span class="muted grow" style="align-self: center; font-size: var(--text-sm)">Changes apply at once.</span><button class="btn primary lg">Done</button></footer>
+  </div>
+  <div class="dialog" role="dialog" aria-labelledby="a" style="width: 380px">
+    <header><h2 id="a">About Strata</h2><button class="btn ghost icon" aria-label="Close"><i data-i="close"></i></button></header>
+    <div class="body">
+      <div class="row"><svg viewBox="0 0 96 96" width="56" height="56" role="img" aria-label="Strata icon"><rect width="96" height="96" rx="20" fill="#0E1420" stroke="#3a4a64"/><rect x="18" y="19" width="52" height="8" rx="2" fill="#C9D3E0"/><rect x="18" y="31" width="52" height="12" rx="2" fill="#5B6B82"/><rect x="28" y="47" width="52" height="9" rx="2" fill="#E0A340"/><rect x="18" y="60" width="52" height="6" rx="2" fill="#5B6B82"/><rect x="18" y="70" width="52" height="8" rx="2" fill="#8E9BB0"/></svg>
+        <div><b style="font: 700 var(--text-xl) var(--font-display); letter-spacing: var(--tracking-wordmark)">STRATA</b><div class="mono muted">0.1.0 · build 9f2c41d</div></div></div>
+      <dl class="kv"><dt>Licence</dt><dd>Apache License 2.0</dd><dt>Case schema</dt><dd class="mono">1</dd><dt>Engine</dt><dd class="mono">strata-engine 0.1.0</dd></dl>
+      <button class="btn"><i data-i="report"></i>Third-party notices</button>
+      <button class="btn"><i data-i="info"></i>Keyboard shortcuts</button>
+    </div>
+  </div>
+</div>
+</body>
+</html>

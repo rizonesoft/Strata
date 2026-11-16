@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<title>Strata: Start</title>
+<link rel="stylesheet" href="fonts.css">
+<link rel="stylesheet" href="../tokens/tokens.css">
+<link rel="stylesheet" href="ui.css">
+<script src="ui.js" defer></script>
+<style>
+.start { flex: 1; display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr); }
+.start > section { padding: var(--space-8) 56px; display: flex; flex-direction: column; gap: var(--space-5); }
+.start > section + section { border-left: 1px solid var(--color-border); background: var(--color-surface); }
+.hero { font: 700 44px/1.05 var(--font-display); letter-spacing: -0.01em; max-width: 520px; }
+.recent { display: grid; grid-template-columns: 34px minmax(0, 1fr) auto 32px; gap: var(--space-3); align-items: center; padding: var(--space-3); border: 1px solid var(--color-border); border-radius: var(--radius-md); background: var(--color-surface); }
+.recent:hover { border-color: var(--color-accent); }
+.mini { display: flex; flex-direction: column; gap: 2px; }
+.mini i { height: 5px; border-radius: 1px; }
+.how { display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: var(--space-2) var(--space-4); align-items: center; }
+.how { row-gap: var(--space-4); }
+.how .band { min-height: 0; height: 72px; justify-content: center; flex: none; }
+</style>
+</head>
+<body data-chrome="bare">
+<main class="start">
+  <section>
+    <div class="label">Digital forensics, layer by layer</div>
+    <h1 class="hero">Open a disk image and read every layer of it.</h1>
+    <p class="muted" style="font-size: var(--text-lg); max-width: 520px">Strata reads the live file system, each shadow copy and unallocated space, and puts what it finds on one timeline. The image is never written to.</p>
+    <div class="row">
+      <button class="btn primary lg"><i data-i="plus"></i>New case</button>
+      <button class="btn lg"><i data-i="folderOpen"></i>Open case</button>
+    </div>
+    <div class="label" style="margin-top: var(--space-4)">Recent cases</div>
+    <div class="col" style="gap: var(--space-2)">
+      <a class="recent" href="overview.html" style="text-decoration: none; color: inherit">
+        <span class="mini" aria-hidden="true"><i style="background: var(--layer-live)"></i><i style="background: var(--layer-snap-1)"></i><i style="background: var(--layer-snap-2)"></i><i style="background: var(--layer-unalloc)"></i></span>
+        <span><b>2026-014 Harbour Freight</b><br><span class="mono muted">D:\Cases\2026-014 · 4 layers · 2,418,906 events</span></span>
+        <span class="muted">Today, 11:42</span><button class="btn ghost icon" aria-label="Remove from recent cases"><i data-i="close" class="sm"></i></button>
+      </a>
+      <a class="recent" href="#" style="text-decoration: none; color: inherit">
+        <span class="mini" aria-hidden="true"><i style="background: var(--layer-live)"></i><i style="background: var(--layer-snap-1)"></i><i style="background: var(--layer-snap-2)"></i><i style="background: var(--layer-snap-3)"></i><i style="background: var(--layer-unalloc)"></i></span>
+        <span><b>2026-009 Ridgeview Clinic</b><br><span class="mono muted">D:\Cases\2026-009 · 5 layers · 5,102,377 events</span></span>
+        <span class="muted">6 March</span><button class="btn ghost icon" aria-label="Remove from recent cases"><i data-i="close" class="sm"></i></button>
+      </a>
+      <div class="recent" style="border-style: dashed">
+        <span class="mini" aria-hidden="true"><i style="background: var(--layer-off)"></i><i style="background: var(--layer-off)"></i><i style="background: var(--layer-off)"></i></span>
+        <span class="muted"><b>2025-131 Okafor laptop</b><br><span class="mono">F:\Cases\2025-131 · folder not found</span></span>
+        <span class="tag danger">Missing</span><button class="btn ghost icon" aria-label="Remove from recent cases"><i data-i="close" class="sm"></i></button>
+      </div>
+    </div>
+  </section>
+  <section>
+    <div class="label">How Strata reads a disk</div>
+    <div class="how">
+      <div class="band live"><b>Live volume</b></div><p class="muted">The file system as it was when the image was taken: files, the change journal, event logs, the registry.</p>
+      <div class="band s1"><b>Shadow copy 2</b></div><p class="muted">Windows keeps older versions of changed blocks. Each shadow copy is the whole volume at an earlier moment.</p>
+      <div class="band s2"><b>Shadow copy 1</b></div><p class="muted">Comparing copies shows what was changed, renamed or removed, and between which two moments.</p>
+      <div class="band un"><b>Unallocated</b></div><p class="muted">Free space still holds records that were deleted. Strata carves file records, journal entries and event log chunks out of it.</p>
+    </div>
+    <span class="grow"></span>
+    <div class="row muted" style="font-size: var(--text-sm)"><i data-i="shield" class="ok"></i>Raw, split raw, fixed VHD and E01 images · NTFS · works fully offline</div>
+    <div class="mono muted" style="font-size: var(--text-xs)">Strata 0.1.0 · Apache-2.0</div>
+  </section>
+</main>
+</body>
+</html>

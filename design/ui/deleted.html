@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<title>Strata: Deleted files</title>
+<link rel="stylesheet" href="fonts.css">
+<link rel="stylesheet" href="../tokens/tokens.css">
+<link rel="stylesheet" href="ui.css">
+<script src="ui.js" defer></script>
+<style>
+.dt { grid-template-columns: 18px minmax(0, 1.2fr) minmax(0, 1fr) 84px 132px 150px 110px; }
+</style>
+</head>
+<body data-view="deleted" data-core="all">
+<main class="content">
+  <div class="page-head"><h1>Deleted files</h1><span class="muted">1,204 records with a name, and 870 carved from free space</span><span class="grow"></span><button class="btn"><i data-i="extract"></i>Extract selected</button></div>
+  <div class="pad" style="padding-top: 0">
+    <div class="cards" style="grid-template-columns: 300px minmax(0, 1fr) minmax(0, 1fr)">
+      <section class="card" aria-label="Can the content be recovered">
+        <h3>Can the content be recovered?</h3>
+        <div class="row" style="gap: var(--space-4)">
+          <div data-chart="donut" data-label="Recoverability of deleted files" data-values="58:--color-ok,17:--color-accent,25:--color-danger"></div>
+          <div class="col" style="gap: 6px; font-size: var(--text-sm)">
+            <div class="row"><span class="dot" style="--c: var(--color-ok)"></span>Intact · 698</div>
+            <div class="row"><span class="dot" style="--c: var(--color-accent)"></span>Partly · 205</div>
+            <div class="row"><span class="dot" style="--c: var(--color-danger)"></span>Overwritten · 301</div>
+          </div>
+        </div>
+      </section>
+      <section class="card" aria-label="Where deletions happened">
+        <h3>Where deletions happened</h3>
+        <div data-chart="hbars" data-label="Deleted files by folder" data-values="\Users\fixture\Documents:412:--layer-unalloc|\Users\fixture\AppData:388|\Windows\Temp:214|\ProgramData\Helper:96|\Users\fixture\Downloads:94"></div>
+      </section>
+      <section class="card" aria-label="When deletions happened">
+        <h3>When deletions happened</h3>
+        <div data-chart="density" data-h="70" data-hot="40-46"></div>
+        <div class="row mono muted" style="justify-content: space-between; font-size: var(--text-xs)"><span>1 Feb</span><span>1 Mar</span><span>14 Mar</span></div>
+      </section>
+    </div>
+  </div>
+  <div class="toolbar">
+    <button class="chip on">Recoverable only<i data-i="close" class="sm"></i></button>
+    <button class="chip">Any type<i data-i="down" class="sm"></i></button>
+    <button class="chip">Any folder<i data-i="down" class="sm"></i></button>
+    <div class="field"><i data-i="search" class="sm"></i>Name contains</div>
+    <span class="grow"></span><span class="muted">903 shown</span>
+  </div>
+  <div class="split"><div class="scroll">
+    <div class="thead dt"><span></span><span>Name</span><span>Folder</span><span class="num">Size</span><span>Deleted (journal)</span><span>Content</span><span>Last seen in</span></div>
+    <div class="tr dt"><span data-g="0111"></span><span class="gone">payroll-old.csv</span><span class="mono muted">\Users\fixture\Documents</span><span class="num mono">201,728</span><span class="mono">03-14 09:58:03</span><span class="row"><span class="meter grow"><i style="width: 100%; --c: var(--color-ok)"></i></span><span class="ok">Intact</span></span><span>Shadow copy 2</span></div>
+    <div class="tr dt"><span data-g="0011"></span><span class="gone">supplier-list.old</span><span class="mono muted">\Users\fixture\Documents</span><span class="num mono">12,076</span><span class="mono">03-12 19:14:40</span><span class="row"><span class="meter grow"><i style="width: 100%; --c: var(--color-ok)"></i></span><span class="ok">Intact</span></span><span>Shadow copy 1</span></div>
+    <div class="tr dt sel"><span data-g="1000"></span><span class="gone">transfer-batch-0314.zip</span><span class="mono muted">\Users\fixture\Downloads</span><span class="num mono">48,201,992</span><span class="mono">03-14 10:11:26</span><span class="row"><span class="meter grow"><i style="width: 64%; --c: var(--color-accent)"></i></span><span class="accent">64%</span></span><span>Live record</span></div>
+    <div class="tr dt"><span data-g="1000"></span><span class="gone">svchelper.log</span><span class="mono muted">\ProgramData\Helper</span><span class="num mono">9,440</span><span class="mono">03-14 10:12:02</span><span class="row"><span class="meter grow"><i style="width: 100%; --c: var(--color-ok)"></i></span><span class="ok">Resident</span></span><span>Live record</span></div>
+    <div class="tr dt"><span data-g="0001"></span><span class="gone">~WRL0412.tmp</span><span class="mono muted">$Carved\51877</span><span class="num mono">61,440</span><span class="mono muted">not in journal</span><span class="row"><span class="meter grow"><i style="width: 38%; --c: var(--color-accent)"></i></span><span class="accent">38%</span></span><span>Carved record</span></div>
+    <div class="tr dt"><span data-g="0110"></span><span class="gone">payroll-notes.txt</span><span class="mono muted">\Users\fixture\Documents</span><span class="num mono">1,208</span><span class="mono">03-14 09:59:11</span><span class="row"><span class="meter grow"><i style="width: 100%; --c: var(--color-ok)"></i></span><span class="ok">Intact</span></span><span>Shadow copy 2</span></div>
+    <div class="tr dt"><span data-g="1000"></span><span class="gone">cleanup.bat</span><span class="mono muted">\Windows\Temp</span><span class="num mono">312</span><span class="mono">03-14 10:12:40</span><span class="row"><span class="meter grow"><i style="width: 100%; --c: var(--color-ok)"></i></span><span class="ok">Resident</span></span><span>Live record</span></div>
+  </div></div>
+</main>
+</body>
+</html>

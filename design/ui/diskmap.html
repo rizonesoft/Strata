@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<title>Strata: Disk map</title>
+<link rel="stylesheet" href="fonts.css">
+<link rel="stylesheet" href="../tokens/tokens.css">
+<link rel="stylesheet" href="ui.css">
+<script src="ui.js" defer></script>
+</head>
+<body data-view="diskmap" data-core="live">
+<main class="content">
+  <div class="page-head">
+    <h1>Disk map</h1>
+    <span class="muted">img0/p2 · 62,371,840 clusters of 4,096 bytes · each square is 44,296 clusters</span>
+    <span class="grow"></span>
+    <div class="field value"><i data-i="locate" class="sm"></i><span class="mono">Go to offset 0x1A3F4C180</span></div>
+  </div>
+  <div class="toolbar">
+    <span class="legend">
+      <span><span class="dot" style="--c: var(--layer-snap-2)"></span>Allocated 62.9%</span>
+      <span><span class="dot" style="--c: var(--layer-off)"></span>Free 37.1%</span>
+      <span><span class="dot" style="--c: var(--kind-journal)"></span>MFT</span>
+      <span><span class="dot" style="--c: var(--kind-registry)"></span>Shadow storage</span>
+      <span><span class="dot" style="--c: var(--layer-unalloc)"></span>Free, with carved records</span>
+      <span><span class="dot" style="--c: var(--color-text)"></span>Selected</span>
+    </span>
+    <span class="grow"></span>
+    <label class="check on"><i></i>Carved records</label><label class="check on"><i></i>Shadow storage</label><label class="check"><i></i>Deleted file content</label>
+  </div>
+  <div class="split">
+    <div class="scroll pad"><div data-chart="clusters" data-rows="38"></div>
+      <div class="row mono muted" style="justify-content: space-between; font-size: var(--text-xs); margin-top: var(--space-2)"><span>cluster 0</span><span>15,592,960</span><span>31,185,920</span><span>46,778,880</span><span>62,371,840</span></div>
+    </div>
+    <aside class="pane" aria-label="Selected region">
+      <div class="row"><i data-i="disk" class="lg accent"></i><div class="grow"><h2>Free space, 3 carved records</h2><div class="mono muted">clusters 40,441,240 to 40,485,535</div></div></div>
+      <dl class="kv">
+        <dt>Image offset</dt><dd class="mono">0x1A3F000000</dd>
+        <dt>State</dt><dd>Free in the live volume</dd>
+        <dt>In shadow copy 2</dt><dd>Allocated to $UsnJrnl:$J</dd>
+        <dt>Carved here</dt><dd>2 USN records, 1 MFT record</dd>
+      </dl>
+      <div class="row"><span class="label grow">Hex at 0x1A3F4C180</span><button class="btn ghost icon" aria-label="Previous sector"><i data-i="right" class="sm" style="transform: rotate(180deg)"></i></button><button class="btn ghost icon" aria-label="Next sector"><i data-i="right" class="sm"></i></button></div>
+      <div class="well hex">1A3F4C180  58 00 00 00 <span class="accent">02 00 00 00</span>  X.......
+1A3F4C188  07 00 00 00 55 BC 00 00  ....U...
+1A3F4C190  05 00 00 00 A9 2E 00 00  ........
+1A3F4C198  40 E1 67 F5 01 00 00 00  @.g.....
+1A3F4C1A0  9C 4F 31 0A 7B B3 DC 01  .O1.{...
+1A3F4C1A8  00 02 00 80 00 00 00 00  ........
+1A3F4C1B0  00 00 00 00 20 00 00 00  .... ...
+1A3F4C1B8  1E 00 3C 00 70 00 61 00  ..&lt;.p.a.
+1A3F4C1C0  79 00 72 00 6F 00 6C 00  y.r.o.l.
+1A3F4C1C8  6C 00 2D 00 6F 00 6C 00  l.-.o.l.</div>
+      <div class="notice"><i data-i="info"></i><span>USN_RECORD_V2, 88 bytes. Decoded as payroll-old.csv, FILE_DELETE, 14 Mar 09:58:03.</span></div>
+      <span class="grow"></span>
+      <div class="row"><button class="btn primary grow"><i data-i="timeline"></i>Show its event</button><button class="btn grow"><i data-i="extract"></i>Save region</button></div>
+    </aside>
+  </div>
+</main>
+</body>
+</html>

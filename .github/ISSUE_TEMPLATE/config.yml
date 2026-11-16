@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Report a vulnerability
+    url: https://github.com/rizonesoft/Strata/security/advisories/new
+    about: A security problem is reported privately, as SECURITY.md describes. Never open an issue for one.

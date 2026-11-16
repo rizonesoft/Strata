@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<title>Strata: New case</title>
+<link rel="stylesheet" href="fonts.css">
+<link rel="stylesheet" href="../tokens/tokens.css">
+<link rel="stylesheet" href="ui.css">
+<script src="ui.js" defer></script>
+</head>
+<body data-chrome="bare">
+<main class="grow"></main>
+<div class="scrim">
+  <div class="dialog" role="dialog" aria-modal="true" aria-labelledby="t" style="width: 620px">
+    <header><h2 id="t">New case</h2><button class="btn ghost icon" aria-label="Close"><i data-i="close"></i></button></header>
+    <div class="body">
+      <div class="row" style="align-items: flex-start; gap: var(--space-4)">
+        <label class="form-row grow"><span>Case name</span><div class="field value lg">2026-014 Harbour Freight</div></label>
+        <label class="form-row" style="width: 200px"><span>Examiner</span><div class="field value lg">T. Mokoena</div></label>
+      </div>
+      <label class="form-row"><span>Case folder</span><div class="row"><div class="field value lg grow mono">D:\Cases\2026-014</div><button class="btn lg">Browse</button></div><small>New folder. Strata keeps the case database and exports here.</small></label>
+      <label class="form-row"><span>Evidence image</span><div class="row"><div class="field value lg grow mono">E:\Evidence\2026-014\harbour-ws04.E01</div><button class="btn lg">Browse</button></div>
+        <small class="row"><i data-i="check" class="sm ok"></i><span>Expert Witness Format · 4 segments · 238.4 GB · stored MD5 found</span></small></label>
+      <div class="form-row"><span>What to read</span>
+        <div class="well col" style="gap: var(--space-3)">
+          <label class="check on"><i></i><span>Verify the image hash first <span class="muted">· about 40 minutes for this image</span></span></label>
+          <label class="check on"><i></i><span>Include shadow copies <span class="muted">· every older version Windows kept</span></span></label>
+          <label class="check on"><i></i><span>Carve unallocated space <span class="muted">· file records, journal entries, event log chunks</span></span></label>
+          <label class="check"><i></i><span>Hash file content <span class="muted">· slower: reads every file in every layer</span></span></label>
+        </div>
+      </div>
+    </div>
+    <footer><button class="btn lg">Cancel</button><button class="btn primary lg"><i data-i="check"></i>Create and ingest</button></footer>
+  </div>
+</div>
+</body>
+</html>

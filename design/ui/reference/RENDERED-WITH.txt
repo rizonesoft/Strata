@@ -1,0 +1,2 @@
+msedge.exe 157.0.4341.60
+1440x900, device scale 1

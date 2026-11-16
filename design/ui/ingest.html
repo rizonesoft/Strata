@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<title>Strata: Ingest</title>
+<link rel="stylesheet" href="fonts.css">
+<link rel="stylesheet" href="../tokens/tokens.css">
+<link rel="stylesheet" href="ui.css">
+<script src="ui.js" defer></script>
+<style>
+.ing { flex: 1; display: grid; grid-template-columns: 300px minmax(0, 1fr); }
+.ing > aside { border-right: 1px solid var(--color-border); background: var(--color-surface); padding: var(--space-8) var(--space-6); display: flex; flex-direction: column; gap: var(--space-2); }
+.ing > section { padding: var(--space-8) 56px; display: flex; flex-direction: column; gap: var(--space-4); min-width: 0; }
+.fill { position: relative; overflow: hidden; }
+.fill::after { content: ""; position: absolute; inset: 0 0 0 var(--at, 100%); background: var(--color-surface); opacity: 0.6; }
+.stage { display: grid; grid-template-columns: 24px minmax(0, 1fr) auto; gap: var(--space-3); align-items: center; padding: var(--space-3) var(--space-4); border: 1px solid var(--color-border); border-radius: var(--radius-md); background: var(--color-surface); }
+.stage.run { border-color: var(--color-accent); }
+.stage .st { width: 22px; height: 22px; border-radius: 50%; display: grid; place-items: center; background: var(--color-surface-3); color: var(--color-text-muted); }
+.stage.done .st { background: var(--color-ok); color: var(--color-accent-ink); }
+.stage.run .st { background: var(--color-accent); color: var(--color-accent-ink); }
+.log { font: var(--text-xs)/1.8 var(--font-mono); color: var(--color-text-muted); }
+</style>
+</head>
+<body data-chrome="bare">
+<main class="ing">
+  <aside>
+    <div class="label">The core, as it is read</div>
+    <div class="band live" style="flex: none; height: 110px"><b>Live volume</b><small>416,292 records</small><span class="n">files done · artifacts done</span></div>
+    <div class="band s1 fill" style="flex: none; height: 92px; --at: 62%"><b>Shadow copy 2</b><small>13 Mar 18:00</small><span class="n">artifacts 62%</span></div>
+    <div class="band s2 fill" style="flex: none; height: 92px; --at: 0%"><b>Shadow copy 1</b><small>12 Mar 18:00</small><span class="n">waiting</span></div>
+    <div class="band un fill" style="flex: none; height: 76px; --at: 0%"><b>Unallocated</b><small>88.2 GB free</small><span class="n">waiting</span></div>
+    <span class="grow"></span>
+    <p class="core-note">The image is opened read-only. Its hash is checked again when the run ends.</p>
+  </aside>
+  <section>
+    <div class="row"><div class="grow"><div class="label">Case 2026-014 Harbour Freight</div><h1 style="font: 700 var(--text-2xl) var(--font-display)">Reading the evidence</h1></div>
+      <span class="mono muted">elapsed 01:02:44 · about 44 minutes left</span><button class="btn"><i data-i="stop"></i>Cancel</button></div>
+    <div class="col" style="gap: var(--space-2)">
+      <div class="stage done"><span class="st"><i data-i="check" class="sm"></i></span><span><b>Verify</b> <span class="muted">· SHA-256 and MD5 match the stored hash</span></span><span class="mono muted">38:12</span></div>
+      <div class="stage done"><span class="st"><i data-i="check" class="sm"></i></span><span><b>Layers</b> <span class="muted">· 2 volumes, 1 NTFS, 2 shadow copies</span></span><span class="mono muted">00:04</span></div>
+      <div class="stage done"><span class="st"><i data-i="check" class="sm"></i></span><span><b>Files</b> <span class="muted">· 1,247,466 records in 3 layers, 1,204 deleted</span></span><span class="mono muted">09:51</span></div>
+      <div class="stage run"><span class="st"><i data-i="play" class="sm"></i></span>
+        <span class="col" style="gap: var(--space-2)"><span><b>Artifacts</b> <span class="muted">· Shadow copy 2 · Security.evtx</span></span><span class="progress"><i style="width: 54%"></i></span><span class="mono muted">1,306,210 of 2,418,000 events · 1,840 per second</span></span>
+        <span class="mono accent">14:37</span></div>
+      <div class="stage"><span class="st mono">5</span><span><b>Carving</b> <span class="muted">· 88.2 GB of free space, three record types</span></span><span class="mono muted">waiting</span></div>
+      <div class="stage"><span class="st mono">6</span><span><b>Indexing</b></span><span class="mono muted">waiting</span></div>
+    </div>
+    <div class="row"><span class="label grow">Log · 2 warnings</span><button class="btn ghost"><i data-i="down" class="sm"></i>Collapse</button></div>
+    <div class="well log">
+      <div>09:04:11 <span class="accent">warn</span> img0/p2 \Users\fixture\Recent\broken.lnk: link target list is longer than the file, skipped</div>
+      <div>09:11:40 <span class="accent">warn</span> img0/p2/vss2 \Windows\Prefetch\OLD.EXE-11C0.pf: unknown prefetch version 17, skipped</div>
+      <div>09:12:02 info img0/p2/vss2 registry: SOFTWARE unchanged since live volume, 88,201 events shared</div>
+    </div>
+  </section>
+</main>
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<title>Strata: Layers</title>
+<link rel="stylesheet" href="fonts.css">
+<link rel="stylesheet" href="../tokens/tokens.css">
+<link rel="stylesheet" href="ui.css">
+<script src="ui.js" defer></script>
+<style>
+.stack { display: flex; flex-direction: column; gap: var(--space-2); }
+.node { border: 1px solid var(--color-border-strong); border-radius: var(--radius-md); padding: var(--space-3); display: flex; flex-direction: column; gap: var(--space-2); background: var(--color-surface); }
+.node > .row b { font-weight: 600; }
+.node .kids { display: flex; flex-direction: column; gap: var(--space-2); margin-left: var(--space-5); }
+.node.sel { border-color: var(--color-accent); box-shadow: inset 3px 0 0 var(--color-accent); }
+.ruler { display: flex; height: 22px; border-radius: var(--radius-sm); overflow: hidden; }
+.ruler i { height: 100%; }
+</style>
+</head>
+<body data-view="layers" data-core="all">
+<main class="content">
+  <div class="page-head"><h1>Layers</h1><span class="muted">How Strata reads this image, from the file down to free space</span></div>
+  <div class="split">
+    <div class="scroll pad">
+      <div class="label" style="margin-bottom: var(--space-2)">The image, to scale</div>
+      <div class="ruler" role="img" aria-label="The image to scale: a 100 MB system partition, the 237.9 GB NTFS volume, and 0.4 GB unpartitioned">
+        <i style="width: 1.5%; background: var(--layer-snap-3)"></i><i style="width: 97%; background: var(--layer-live); margin: 0 2px"></i><i style="width: 1.5%; background: var(--layer-off)"></i>
+      </div>
+      <div class="row mono muted" style="justify-content: space-between; font-size: var(--text-xs); margin: 4px 0 var(--space-5)"><span>0x0</span><span>img0/p1 EFI</span><span class="grow" style="text-align: center">img0/p2 · NTFS · 237.9 GB</span><span>0x3B9ACA0000</span></div>
+      <div class="stack" role="tree" aria-label="Layer tree">
+        <div class="node" role="treeitem" aria-expanded="true">
+          <div class="row"><i data-i="evidence"></i><b>harbour-ws04.E01</b><span class="tag mono">img0</span><span class="grow"></span><span class="mono muted">image · 238.4 GB</span></div>
+          <div class="kids">
+            <div class="node"><div class="row"><i data-i="disk"></i><b>EFI system partition</b><span class="tag mono">img0/p1</span><span class="grow"></span><span class="mono muted">volume · 100 MB · not NTFS</span></div></div>
+            <div class="node">
+              <div class="row"><i data-i="disk"></i><b>Basic data partition</b><span class="tag mono">img0/p2</span><span class="grow"></span><span class="mono muted">volume · NTFS · 237.9 GB · offset 0x6500000</span></div>
+              <div class="kids">
+                <div class="node"><div class="row"><span class="dot" style="--c: var(--layer-live)"></span><b>Live file system</b><span class="grow"></span><span class="mono muted">416,292 records · 1,902,114 events</span></div></div>
+                <div class="node"><div class="row"><span class="dot" style="--c: var(--layer-snap-1)"></span><b>Shadow copy 2</b><span class="tag mono">img0/p2/vss2</span><span class="grow"></span><span class="mono muted">13 Mar 18:00 · 1,711,580 events</span></div></div>
+                <div class="node sel" aria-selected="true"><div class="row"><span class="dot" style="--c: var(--layer-snap-2)"></span><b>Shadow copy 1</b><span class="tag mono">img0/p2/vss1</span><span class="grow"></span><span class="mono muted">12 Mar 18:00 · 1,655,902 events</span></div></div>
+                <div class="node" style="border-style: dashed; border-color: var(--layer-unalloc)"><div class="row"><span class="dot" style="--c: var(--layer-unalloc)"></span><b>Unallocated space</b><span class="tag mono">img0/p2/unalloc</span><span class="grow"></span><span class="mono muted">88.2 GB free · 41,266 carved records</span></div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <aside class="pane" aria-label="Layer details">
+      <div class="row"><span class="dot" style="--c: var(--layer-snap-2); width: 12px; height: 12px"></span><h2>Shadow copy 1</h2></div>
+      <dl class="kv">
+        <dt>Kind</dt><dd>Snapshot of img0/p2</dd>
+        <dt>Layer id</dt><dd class="mono row">img0/p2/vss1 <button class="btn ghost icon" aria-label="Copy layer id"><i data-i="copy" class="sm"></i></button></dd>
+        <dt>Created</dt><dd class="mono">2026-03-12 18:00:07 UTC</dd>
+        <dt>Size</dt><dd class="mono">237.9 GB</dd>
+        <dt>Shadow storage</dt><dd class="mono">3.1 GB in 190,412 blocks</dd>
+        <dt>Cluster size</dt><dd class="mono">4,096 bytes</dd>
+        <dt>File records</dt><dd class="mono">414,880</dd>
+      </dl>
+      <div class="label">Where its blocks come from</div>
+      <div class="meter" role="img" aria-label="1.3 percent of blocks are read from shadow storage, the rest from the current volume"><i style="width: 6%; --c: var(--color-accent)"></i><i style="width: 94%; --c: var(--layer-snap-2)"></i></div>
+      <div class="legend"><span><span class="dot" style="--c: var(--color-accent)"></span>Shadow storage 1.3%</span><span><span class="dot" style="--c: var(--layer-snap-2)"></span>Current volume 98.7%</span></div>
+      <span class="grow"></span>
+      <button class="btn primary"><i data-i="files"></i>Browse files in this layer</button>
+      <button class="btn"><i data-i="timeline"></i>Show events in this layer</button>
+    </aside>
+  </div>
+</main>
+</body>
+</html>

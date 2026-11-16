@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<title>Strata: Compare</title>
+<link rel="stylesheet" href="fonts.css">
+<link rel="stylesheet" href="../tokens/tokens.css">
+<link rel="stylesheet" href="ui.css">
+<script src="ui.js" defer></script>
+<style>
+.ct { grid-template-columns: 18px minmax(0, 1.6fr) 96px 96px 132px 132px; }
+.tabs { display: flex; gap: var(--space-1); padding: 0 var(--space-5); border-bottom: 1px solid var(--color-border); }
+.tab { height: 38px; padding: 0 var(--space-3); border: 0; background: none; color: var(--color-text-muted); border-bottom: 2px solid transparent; display: flex; align-items: center; gap: var(--space-2); }
+.tab[aria-selected="true"] { color: var(--color-text); border-color: var(--color-accent); font-weight: 600; }
+.sumbar { height: 28px; display: flex; border-radius: var(--radius-sm); overflow: hidden; gap: 2px; }
+.sumbar i { display: flex; align-items: center; padding: 0 var(--space-2); font: 600 var(--text-xs) var(--font-mono); color: var(--color-accent-ink); min-width: 0; white-space: nowrap; }
+</style>
+</head>
+<body data-view="compare" data-core="pair">
+<main class="content">
+  <div class="page-head">
+    <h1>Compare</h1>
+    <button class="chip"><span class="tag accent">A</span>Shadow copy 1 · 12 Mar 18:00<i data-i="down" class="sm"></i></button>
+    <i data-i="right" class="muted"></i>
+    <button class="chip"><span class="tag accent">B</span>Live volume · 14 Mar 11:20<i data-i="down" class="sm"></i></button>
+    <button class="btn primary">Compare</button>
+    <span class="grow"></span>
+    <div class="field"><i data-i="filter" class="sm"></i>Path filter</div>
+  </div>
+  <div class="pad" style="padding-top: 0">
+    <div class="cards" style="grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr)">
+      <section class="card" aria-label="Summary of changes">
+        <h3>What happened between A and B, 41 hours apart</h3>
+        <div class="sumbar" role="img" aria-label="412 added, 96 removed, 1,731 modified, 412,641 unchanged">
+          <i style="width: 14%; background: var(--color-ok)">+412</i><i style="width: 8%; background: var(--color-danger)">−96</i><i style="width: 30%; background: var(--color-accent)">1,731 changed</i><i style="width: 48%; background: var(--layer-snap-2); color: var(--color-text)">412,641 unchanged</i>
+        </div>
+        <div class="legend"><span><span class="dot" style="--c: var(--color-ok)"></span>Added in B</span><span><span class="dot" style="--c: var(--color-danger)"></span>Removed from B</span><span><span class="dot" style="--c: var(--color-accent)"></span>Modified</span><span class="muted">Bar segments are not to scale: unchanged files are 99.5%.</span></div>
+      </section>
+      <section class="card" aria-label="Folders that changed most">
+        <h3>Folders that changed most</h3>
+        <div data-chart="hbars" data-label="Changes by folder" data-values="Users/fixture/AppData:1104|Windows/Prefetch:312|Users/fixture/Documents:148:--layer-unalloc|ProgramData/Helper:96:--layer-unalloc|Windows/Temp:88"></div>
+      </section>
+    </div>
+  </div>
+  <div class="tabs" role="tablist">
+    <button class="tab" role="tab" aria-selected="false"><span class="dot" style="--c: var(--color-ok)"></span>Added <span class="mono">412</span></button>
+    <button class="tab" role="tab" aria-selected="false"><span class="dot" style="--c: var(--color-danger)"></span>Removed <span class="mono">96</span></button>
+    <button class="tab" role="tab" aria-selected="true"><span class="dot" style="--c: var(--color-accent)"></span>Modified <span class="mono">1,731</span></button>
+  </div>
+  <div class="split" style="border-top: 0"><div class="scroll">
+    <div class="thead ct"><span></span><span>Path</span><span class="num">Size in A</span><span class="num">Size in B</span><span>Modified in A</span><span>Modified in B</span></div>
+    <div class="tr ct"><span data-g="1110"></span><span class="mono">\Users\fixture\Documents\contracts-index.xlsx</span><span class="num mono">22,904</span><span class="num mono accent">23,552</span><span class="mono muted">03-09 09:12:30</span><span class="mono accent">03-14 09:48:11</span></div>
+    <div class="tr ct sel"><span data-g="0110"></span><span class="mono">\Users\fixture\Documents\payroll-2025.csv</span><span class="num mono">184,320</span><span class="num mono accent">renamed</span><span class="mono muted">01-05 12:00:00</span><span class="mono accent">payroll-old.csv</span></div>
+    <div class="tr ct"><span data-g="1110"></span><span class="mono">\Users\fixture\NTUSER.DAT</span><span class="num mono">1,835,008</span><span class="num mono accent">1,835,008</span><span class="mono muted">03-12 17:59:40</span><span class="mono accent">03-14 10:31:02</span></div>
+    <div class="tr ct"><span data-g="1110"></span><span class="mono">\Windows\Prefetch\EXCEL.EXE-53A22446.pf</span><span class="num mono">41,220</span><span class="num mono accent">44,810</span><span class="mono muted">03-12 14:02:19</span><span class="mono accent">03-14 09:15:02</span></div>
+    <div class="tr ct"><span data-g="1110"></span><span class="mono">\Windows\System32\config\SOFTWARE</span><span class="num mono">88,342,528</span><span class="num mono accent">88,342,528</span><span class="mono muted">03-12 17:58:03</span><span class="mono accent">03-14 10:02:17</span></div>
+    <div class="tr ct"><span data-g="1110"></span><span class="mono">\Windows\System32\winevt\Logs\Application.evtx</span><span class="num mono">20,975,616</span><span class="num mono accent">69,632</span><span class="mono muted">03-12 17:40:55</span><span class="mono accent">03-14 10:12:55</span></div>
+  </div></div>
+</main>
+</body>
+</html>

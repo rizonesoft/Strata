@@ -1,0 +1,26 @@
+name: Something is wrong
+description: A mistake in the plan, the specification or the design, or (once code exists) a bug.
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: Never attach or describe data from a real case. Reproduce the problem on a synthetic image.
+  - type: input
+    id: where
+    attributes:
+      label: Where is it?
+      description: A file and line, a TODO section such as D03 T01 §2, a command, or a screen.
+    validations:
+      required: true
+  - type: textarea
+    id: what
+    attributes:
+      label: What is wrong, and what should it be?
+      description: For a format detail, name your source.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: How can it be seen?
+      description: Commands, a minimal synthetic sample, or the passage that contradicts it.

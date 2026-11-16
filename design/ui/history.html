@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<title>Strata: History</title>
+<link rel="stylesheet" href="fonts.css">
+<link rel="stylesheet" href="../tokens/tokens.css">
+<link rel="stylesheet" href="ui.css">
+<script src="ui.js" defer></script>
+<style>
+.track { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--space-4); position: relative; }
+.track::before { content: ""; position: absolute; left: 6%; right: 6%; top: 15px; height: 2px; background: var(--color-border-strong); }
+.ver { display: flex; flex-direction: column; gap: var(--space-2); align-items: stretch; position: relative; }
+.ver .pin { width: 14px; height: 14px; border-radius: 50%; margin: 8px auto 4px; border: 3px solid var(--color-bg); background: var(--c); box-shadow: 0 0 0 2px var(--c); }
+.ver .card { gap: var(--space-2); }
+.ver.gone .card { border-style: dashed; }
+.chg { background: var(--color-accent-soft); color: var(--color-accent-text); border-radius: 3px; padding: 0 4px; }
+.ht { grid-template-columns: minmax(0, 1.1fr) 150px 70px 96px 150px 130px minmax(0, 1.2fr); }
+</style>
+</head>
+<body data-view="history" data-core="all">
+<main class="content">
+  <div class="page-head">
+    <h1>History</h1>
+    <div class="field value grow" style="max-width: 520px"><i data-i="file" class="sm"></i><span class="mono">\Users\fixture\Documents\payroll-2025.csv</span></div>
+    <span class="tag mono">MFT 48213</span>
+    <span class="grow"></span>
+    <button class="btn"><i data-i="files"></i>Open in Files</button><button class="btn"><i data-i="timeline"></i>Show events</button>
+  </div>
+  <div class="scroll pad" style="padding-top: var(--space-2)">
+    <div class="track" role="list" aria-label="Versions of this file, oldest first">
+      <div class="ver" role="listitem" style="--c: var(--layer-snap-2)"><span class="pin"></span><div class="card">
+        <div class="row"><b class="grow">Shadow copy 1</b><span class="mono muted">12 Mar 18:00</span></div>
+        <div class="mono">payroll-2025.csv</div><div class="mono muted">184,320 B · sha256 4be1…09aa</div><span class="tag">first seen</span></div></div>
+      <div class="ver" role="listitem" style="--c: var(--layer-snap-1)"><span class="pin"></span><div class="card">
+        <div class="row"><b class="grow">Shadow copy 2</b><span class="mono muted">13 Mar 18:00</span></div>
+        <div class="mono">payroll-2025.csv</div><div class="mono muted"><span class="chg">201,728 B</span> · sha256 <span class="chg">77c0…d2e4</span></div><span class="tag accent">content changed · +17,408 B</span></div></div>
+      <div class="ver gone" role="listitem" style="--c: var(--layer-live)"><span class="pin"></span><div class="card">
+        <div class="row"><b class="grow">Live volume</b><span class="mono muted">14 Mar 11:20</span></div>
+        <div class="mono"><span class="chg">payroll-old.csv</span></div><div class="mono muted">record reused as 48213-8</div><span class="tag danger">renamed 09:41, deleted 09:58</span></div></div>
+      <div class="ver gone" role="listitem" style="--c: var(--layer-unalloc)"><span class="pin"></span><div class="card">
+        <div class="row"><b class="grow">Unallocated</b><span class="mono muted">time unknown</span></div>
+        <div class="mono">payroll-old.csv</div><div class="mono muted">carved USN record · 0x1A3F4C180</div><span class="tag accent">1 carved record</span></div></div>
+    </div>
+    <div class="label" style="margin: var(--space-6) 0 var(--space-2)">Every version, field by field</div>
+    <div class="card" style="padding: 0; gap: 0">
+      <div class="thead ht"><span>Layer</span><span>Layer time</span><span>Exists</span><span class="num">Size</span><span>Modified ($SI)</span><span>Content hash</span><span>Changed since the row above</span></div>
+      <div class="tr ht"><span class="row"><span class="dot" style="--c: var(--layer-snap-2)"></span>Shadow copy 1</span><span class="mono">03-12 18:00:07</span><span class="ok">yes</span><span class="num mono">184,320</span><span class="mono">01-05 12:00:00</span><span class="mono">4be1…09aa</span><span class="muted">first version</span></div>
+      <div class="tr ht"><span class="row"><span class="dot" style="--c: var(--layer-snap-1)"></span>Shadow copy 2</span><span class="mono">03-13 18:00:04</span><span class="ok">yes</span><span class="num mono"><span class="chg">201,728</span></span><span class="mono">01-05 12:00:00</span><span class="mono"><span class="chg">77c0…d2e4</span></span><span>Resized, content changed. Modified time did not move.</span></div>
+      <div class="tr ht"><span class="row"><span class="dot" style="--c: var(--layer-live)"></span>Live volume</span><span class="mono">03-14 11:20:31</span><span class="danger"><span class="chg">no</span></span><span class="num mono muted">n/a</span><span class="mono muted">n/a</span><span class="mono muted">n/a</span><span>Renamed to payroll-old.csv, then deleted.</span></div>
+    </div>
+    <div class="notice" style="margin-top: var(--space-4)"><i data-i="warn"></i><span>The content changed between the two shadow copies while the modified time stayed at 5 January. A timestamp that does not move when content does has usually been set by hand.</span></div>
+  </div>
+</main>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<title>Strata: Components</title>
+<link rel="stylesheet" href="fonts.css">
+<link rel="stylesheet" href="../tokens/tokens.css">
+<link rel="stylesheet" href="ui.css">
+<script src="ui.js" defer></script>
+<style>
+.sheet { flex: 1; padding: var(--space-6) 48px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--space-4); align-content: start; overflow: hidden; }
+.sw { display: grid; grid-template-columns: repeat(6, 1fr); gap: 6px; }
+.sw i { height: 34px; border-radius: var(--radius-sm); border: 1px solid var(--color-border); }
+.icons { display: grid; grid-template-columns: repeat(9, 1fr); gap: var(--space-3); color: var(--color-text-muted); }
+</style>
+</head>
+<body data-chrome="bare">
+<main class="sheet">
+  <section class="card"><h3>Surfaces and text</h3>
+    <div class="sw"><i style="background: var(--color-bg)"></i><i style="background: var(--color-surface)"></i><i style="background: var(--color-surface-2)"></i><i style="background: var(--color-surface-3)"></i><i style="background: var(--color-border-strong)"></i><i style="background: var(--color-text)"></i></div>
+    <div class="mono muted" style="font-size: var(--text-xs)">bg · surface · surface-2 · surface-3 · border-strong · text</div>
+    <div>Text <span class="muted">· muted</span> <span style="color: var(--color-text-faint)">· faint</span> <span class="accent">· accent</span> <span class="ok">· ok</span> <span class="danger">· danger</span></div></section>
+  <section class="card"><h3>Layers and event families</h3>
+    <div class="sw"><i style="background: var(--layer-live)"></i><i style="background: var(--layer-snap-1)"></i><i style="background: var(--layer-snap-2)"></i><i style="background: var(--layer-snap-3)"></i><i style="background: var(--layer-unalloc)"></i><i style="background: var(--layer-off)"></i></div>
+    <div class="mono muted" style="font-size: var(--text-xs)">live · snap-1 · snap-2 · snap-3 · unalloc · off</div>
+    <div class="sw"><i style="background: var(--kind-file)"></i><i style="background: var(--kind-journal)"></i><i style="background: var(--kind-log)"></i><i style="background: var(--kind-registry)"></i><i style="background: var(--kind-program)"></i><i style="background: var(--kind-shortcut)"></i></div>
+    <div class="mono muted" style="font-size: var(--text-xs)">file · journal · log · registry · program · shortcut</div></section>
+  <section class="card"><h3>Type</h3>
+    <div style="font: 700 var(--text-2xl) var(--font-display)">Space Grotesk 28</div><div style="font: 700 var(--text-xl) var(--font-display)">Space Grotesk 20, page titles</div>
+    <div style="font-size: var(--text-lg)">Inter 15, lead text</div><div>Inter 13, interface text</div><div class="mono">JetBrains Mono 12: 0x1A3F4C180</div><div class="label">Label 11, tracked capitals</div></section>
+  <section class="card"><h3>Buttons</h3>
+    <div class="row wrap"><button class="btn primary">Primary</button><button class="btn">Secondary</button><button class="btn ghost">Ghost</button><button class="btn" disabled>Disabled</button><button class="btn icon" aria-label="Copy"><i data-i="copy"></i></button></div>
+    <div class="row wrap"><button class="btn primary lg"><i data-i="plus"></i>Large primary</button><button class="btn lg">Large</button><button class="btn" style="outline: 2px solid var(--color-focus); outline-offset: 2px">Focused</button></div></section>
+  <section class="card"><h3>Fields, chips and checks</h3>
+    <div class="row wrap"><div class="field">Placeholder</div><div class="field value">Value</div><div class="field value error">Invalid</div></div>
+    <div class="row wrap"><button class="chip">Chip<i data-i="down" class="sm"></i></button><button class="chip on">Active filter<i data-i="close" class="sm"></i></button><label class="check on"><i></i>On</label><label class="check"><i></i>Off</label></div></section>
+  <section class="card"><h3>Tags, glyphs and meters</h3>
+    <div class="row wrap"><span class="tag">file.created</span><span class="tag accent">carved</span><span class="tag ok">verified</span><span class="tag danger">del</span><span data-g="1111"></span><span data-g="1100"></span><span data-g="0001"></span><span data-g="0110"></span></div>
+    <div class="meter"><i style="width: 64%"></i></div><div class="progress"><i style="width: 40%"></i></div>
+    <p class="muted" style="font-size: var(--text-sm)">The glyph's four bars are live, shadow copy 2, shadow copy 1 and unallocated, top to bottom.</p></section>
+  <section class="card" style="grid-column: span 2"><h3>Icons, 24 px grid, 1.75 px stroke</h3>
+    <div class="icons"><i data-i="home"></i><i data-i="layers"></i><i data-i="files"></i><i data-i="file"></i><i data-i="deleted"></i><i data-i="timeline"></i><i data-i="activity"></i><i data-i="history"></i><i data-i="compare"></i>
+      <i data-i="disk"></i><i data-i="bookmark"></i><i data-i="audit"></i><i data-i="exportIcon"></i><i data-i="report"></i><i data-i="settings"></i><i data-i="search"></i><i data-i="plus"></i><i data-i="evidence"></i>
+      <i data-i="check"></i><i data-i="close"></i><i data-i="warn"></i><i data-i="down"></i><i data-i="right"></i><i data-i="shield"></i><i data-i="copy"></i><i data-i="extract"></i><i data-i="filter"></i>
+      <i data-i="clock"></i><i data-i="user"></i><i data-i="program"></i><i data-i="registry"></i><i data-i="link"></i><i data-i="log"></i><i data-i="journal"></i><i data-i="stop"></i><i data-i="info"></i>
+      <i data-i="locate"></i><i data-i="folderOpen"></i><i data-i="play"></i></div></section>
+  <section class="card"><h3>States</h3>
+    <div class="notice"><i data-i="warn"></i><span>A notice explains a finding in one or two sentences.</span></div>
+    <div class="empty" style="margin: 0; max-width: none"><i data-i="bookmark" class="lg"></i><span>No bookmarks yet. Select an event in the Timeline and press B.</span><button class="btn">Open Timeline</button></div></section>
+</main>
+</body>
+</html>

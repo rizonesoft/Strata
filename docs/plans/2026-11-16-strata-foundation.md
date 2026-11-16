@@ -20,6 +20,7 @@ In scope:
 - Unallocated space: structured record carving for MFT records, USN records and EVTX chunks.
 - Artifacts: MFT timestamps, the USN journal, EVTX event logs, registry key last-write times, prefetch and LNK shortcuts.
 - A case store, timeline queries, file history across layers, layer comparison, bookmarks, an audit log, CSV and JSONL export, an HTML report.
+- Three views added with the chosen design on 2026-11-17: deleted files with recoverability, recent activity by day, and a disk map with a raw hex view.
 - Two interfaces over one engine: the `strata` command line and a desktop app for Windows.
 
 Not in version 1 (each is a limit to state in the user guide, not a hidden gap):
@@ -52,13 +53,16 @@ Not in version 1 (each is a limit to state in the user guide, not a hidden gap):
 | Desktop frontend | React, TypeScript, Vite, pnpm | Mainstream, strong virtualised grid support |
 | Grid and state | TanStack Table, TanStack Virtual, TanStack Query | Million-row timelines stay responsive |
 | Frontend tests | Vitest, Testing Library, Playwright against the built app | Unit plus real rendered checks |
+| Look | `design/tokens/tokens.css` and `design/ui/ui.css`, imported as they are | 1:1 with the mockups |
+| Charts and icons | Hand-built SVG components; icons generated from the design | No chart or icon dependency |
+| Fonts | Space Grotesk, Inter, JetBrains Mono from `assets/fonts` | Bundled: the app makes no network request |
 | Installer | Tauri bundler, NSIS target | Per-user install, no admin needed |
 
 Dependency rules:
 
 - Every dependency is pinned by `Cargo.lock` and `pnpm-lock.yaml`, both committed. The exact version of each crate is chosen when its section is built, from the latest release at that time, and recorded by the lock file.
 - Only permissive licences (MIT, Apache-2.0, BSD, ISC, Zlib, Unicode) are allowed. `cargo deny check licenses` enforces it. Two near misses decided this rule: the `vshadow` crate moved to AGPL-3.0 at 0.2.0, and `nt-hive` is GPL-2.0-or-later.
-- The project's own licence is the owner's decision and is recorded in D09 T01 §4.
+- Strata is licensed under Apache-2.0 (owner decision, 2026-11-17). D09 T01 §4 produces the third-party notices.
 
 ## 4. Architecture
 
@@ -99,7 +103,8 @@ One Cargo workspace at the repository root, one pnpm project for the frontend.
 | `apps/desktop` | Tauri 2 app: `src-tauri` (Rust commands) and `src` (React) |
 | `xtask` | Developer tasks: fixture conversion to E01, licence notices |
 | `fixtures` | The fixture build script and its manifest schema; built images are not committed |
-| `design` | `SPEC.md` and `tokens/` |
+| `design` | `SPEC.md`, `CONTRACT.md`, `tokens/`, and the mockups and reference renders in `ui/` |
+| `assets` | `brand/` (mark, wordmark, banners, icons) and `fonts/` |
 
 Dependencies point one way: `strata-core` at the bottom, then the layer crates, then `strata-artifacts` and `strata-case`, then `strata-engine`, then the two interfaces. No interface code reaches below `strata-engine`.
 
@@ -118,6 +123,7 @@ A case is a folder holding `case.duckdb` and an `exports` folder. The evidence i
 | `bookmarks` | Event id, note, created time |
 | `audit_log` | Append-only: time, actor, action, parameters, result |
 | `ingest_runs` | One row per ingest: options, stage states, counts, start and end |
+| `diskmap` | The volume's cluster groups and their state per layer, written at ingest |
 
 Deduplication: an unchanged file in a shadow copy yields the same events as the live volume. Each event has a dedupe key (a BLAKE3 hash of kind, time, source artifact identity and the fields that define it). One `events` row is kept and `event_layers` records every layer it was seen in.
 
@@ -132,7 +138,7 @@ All times are stored as UTC microseconds. Display time zone is a setting.
 
 ## 5. Test evidence
 
-One fixture image carries the ground truth for integration tests. `fixtures/build-fixture.ps1` builds it on Windows from an elevated prompt: a fixed VHD holding one GPT partition with NTFS, a known set of files, two shadow copies taken between scripted changes, deleted files, and known artifacts at their standard Windows paths. The script writes `fixtures/out/manifest.json` beside the image with every expected fact (paths, sizes, SHA-256 hashes, which files were deleted, each snapshot's time and contents, the expected events).
+One fixture image carries the ground truth for integration tests. `fixtures/build-fixture.ps1` builds it on Windows from an elevated prompt (the campaign launcher runs elevated for this reason, owner decision 2026-11-17): a fixed VHD holding one GPT partition with NTFS, a known set of files, two shadow copies taken between scripted changes, deleted files, and known artifacts at their standard Windows paths. The script writes `fixtures/out/manifest.json` beside the image with every expected fact (paths, sizes, SHA-256 hashes, which files were deleted, each snapshot's time and contents, the expected events).
 
 The image is about 1 GB and is not committed. A test that needs it fails with the build command when it is missing: it never skips silently. Parser unit tests use small byte fixtures committed under each crate's `tests/data`.
 

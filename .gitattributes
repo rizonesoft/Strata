@@ -1,0 +1,9 @@
+# Text is stored and checked out with LF on every platform: the kit scripts are run on Windows and in WSL.
+* text=auto eol=lf
+*.cmd text eol=crlf
+*.ps1 text eol=lf
+
+*.png binary
+*.ico binary
+*.ttf binary
+*.bin binary

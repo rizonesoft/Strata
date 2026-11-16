@@ -11,7 +11,7 @@ track: M8
 
 > **Goal:** Strata version 1 can be handed to an examiner: one acceptance run proves the plan's acceptance bar end to end in both interfaces, an installer puts the app and the `strata` command on a clean Windows machine, a user guide explains every feature and every limit, and the licence position is recorded.
 
-> **Current state:** Measured 2026-11-16. Nothing exists. No licence has been chosen for the project; the repository has no remote and no signing certificate.
+> **Current state:** Measured 2026-11-16. Nothing exists. Corrected 2026-11-17: the owner chose Apache-2.0, `LICENSE` and `NOTICE` are at the repository root, and the public repository is `rizonesoft/Strata` on GitHub. There is no signing certificate.
 
 ## Inputs
 
@@ -115,19 +115,20 @@ A person who has never seen Strata should be able to open evidence and reach a f
 
 ## 4. Project licence and third-party notices
 
-Strata's own licence is a business decision nobody but the owner can make. The dependency notices follow mechanically once it is made.
+The owner chose Apache-2.0 on 2026-11-17. The dependency notices follow mechanically from the lock files.
+
+> **Owner decision 2026-11-17:** Strata is licensed under the Apache License, Version 2.0.
 
 **Phase:** 8
-**Needs:** owner-decision
+**Needs:** none
 **Surface:** no
 
 **Build order:**
 
-1. Record the owner's licence decision in this section. Done when: a dated `Owner decision` line names the licence.
+1. Confirm the licence files match the owner's decision recorded above. Done when: `LICENSE` holds the Apache-2.0 text and every manifest names it.
 2. Write the licence and notices files. Done when: both exist and the notices match the lock files.
 
-- [ ] Ask the owner which licence Strata ships under (proprietary and all rights reserved, or a named open-source licence) and record the answer here as `> **Owner decision <date>:** <licence>`, then remove `owner-decision` from this section's Needs. Done when: the line is present and `python scripts/todo-graph.py query ready` lists this section.
-- [ ] Write `LICENSE` at the repository root with the chosen terms, and set `license` or `license-file` in the workspace `Cargo.toml` and in `apps/desktop/package.json`. Done when: `cargo metadata` reports it for every crate.
+- [ ] Check `LICENSE` at the repository root is the unmodified Apache-2.0 text and `NOTICE` names Strata and its copyright holder, and set `license = "Apache-2.0"` in the workspace `Cargo.toml` and in `apps/desktop/package.json`. Done when: `cargo metadata` reports `Apache-2.0` for every crate, and a test compares the SHA-256 of `LICENSE` with the published Apache-2.0 text's.
 - [ ] Add `cargo run -p xtask -- notices` generating `THIRD-PARTY-NOTICES.md` from `cargo metadata` and `pnpm licenses list --json`: each dependency's name, version, licence and licence text. Done when: a test regenerates it and fails when the committed file differs.
 - [ ] Ship the notices in the installer and show them from an About dialog reached from the Settings dialog (version, licence, notices). Done when: an end-to-end test opens About and sees the Strata version and a dependency name.
 - [ ] Confirm `cargo deny check licenses` still passes with the final tree and that no dependency's licence conflicts with the chosen one. Done when: the command exits 0 and its summary is quoted in this section.

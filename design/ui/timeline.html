@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<title>Strata: Timeline</title>
+<link rel="stylesheet" href="fonts.css">
+<link rel="stylesheet" href="../tokens/tokens.css">
+<link rel="stylesheet" href="ui.css">
+<script src="ui.js" defer></script>
+<style>
+.tl { grid-template-columns: 18px 150px 132px minmax(0, 1.3fr) minmax(0, 1fr) 20px; }
+</style>
+</head>
+<body data-view="timeline" data-core="all">
+<main class="content">
+  <div class="page-head">
+    <h1>Timeline</h1>
+    <span class="muted">1,284 of 2,418,906 events</span>
+    <span class="grow"></span>
+    <button class="btn ghost">Clear filters</button>
+  </div>
+  <div class="toolbar">
+    <button class="chip"><i data-i="clock" class="sm"></i>14 Mar 09:00 to 10:30<i data-i="down" class="sm"></i></button>
+    <button class="chip">All 9 kinds<i data-i="down" class="sm"></i></button>
+    <button class="chip on">Path: \Users\fixture\**<i data-i="close" class="sm"></i></button>
+    <div class="field"><i data-i="search" class="sm"></i>Text contains</div>
+    <label class="check"><i></i>Bookmarked only</label>
+  </div>
+  <div class="split">
+    <div class="scroll">
+  <div class="pad" style="padding-bottom: var(--space-2)">
+    <div data-chart="lanes"></div>
+    <div data-chart="density" data-sel="1" style="margin-top: var(--space-2)"></div>
+    <div class="row mono muted" style="justify-content: space-between; font-size: var(--text-xs)"><span>09:00</span><span>09:30</span><span>10:00</span><span>10:30</span></div>
+  </div>
+      <div class="thead tl"><span></span><span>Time (UTC)</span><span>Kind</span><span>Summary</span><span>Path</span><span></span></div>
+      <div class="tr tl"><span data-g="1100"></span><span class="mono">09:12:04.118</span><span><span class="tag"><span class="dot" style="--c: var(--kind-file)"></span>file.created</span></span><span>q1-forecast.xlsx created</span><span class="mono muted">\Users\fixture\Documents</span><span></span></div>
+      <div class="tr tl"><span data-g="1000"></span><span class="mono">09:12:04.120</span><span><span class="tag"><span class="dot" style="--c: var(--kind-journal)"></span>usn.change</span></span><span>q1-forecast.xlsx FILE_CREATE</span><span class="mono muted">\Users\fixture\Documents</span><span></span></div>
+      <div class="tr tl"><span data-g="1000"></span><span class="mono">09:14:31.902</span><span><span class="tag"><span class="dot" style="--c: var(--kind-file)"></span>file.modified</span></span><span>q1-forecast.xlsx modified</span><span class="mono muted">\Users\fixture\Documents</span><span></span></div>
+      <div class="tr tl"><span data-g="1110"></span><span class="mono">09:15:02.006</span><span><span class="tag"><span class="dot" style="--c: var(--kind-program)"></span>program.run</span></span><span>EXCEL.EXE, run 14</span><span class="mono muted">\Windows\Prefetch</span><span></span></div>
+      <div class="tr tl"><span data-g="1000"></span><span class="mono">09:21:47.530</span><span><span class="tag"><span class="dot" style="--c: var(--kind-shortcut)"></span>shortcut.target</span></span><span>q1-forecast.xlsx.lnk points at D:\Finance</span><span class="mono muted">\Users\fixture\Recent</span><span></span></div>
+      <div class="tr tl"><span data-g="1100"></span><span class="mono">09:30:10.774</span><span><span class="tag"><span class="dot" style="--c: var(--kind-log)"></span>log.event</span></span><span>Security-Auditing 4624, logon type 10</span><span class="mono muted">Security.evtx</span><span><i data-i="bookmark" class="sm accent"></i></span></div>
+      <div class="tr tl"><span data-g="1001"></span><span class="mono">09:41:55.201</span><span><span class="tag"><span class="dot" style="--c: var(--kind-journal)"></span>usn.change</span></span><span>payroll-2025.csv RENAME_OLD_NAME</span><span class="mono muted">\Users\fixture\Documents</span><span></span></div>
+      <div class="tr tl"><span data-g="1000"></span><span class="mono">09:41:55.201</span><span><span class="tag"><span class="dot" style="--c: var(--kind-journal)"></span>usn.change</span></span><span>payroll-old.csv RENAME_NEW_NAME</span><span class="mono muted">\Users\fixture\Documents</span><span></span></div>
+      <div class="tr tl"><span data-g="1000"></span><span class="mono">09:42:20.667</span><span><span class="tag"><span class="dot" style="--c: var(--kind-file)"></span>file.mft_modified</span></span><span>payroll-old.csv record changed</span><span class="mono muted">\Users\fixture\Documents</span><span></span></div>
+      <div class="tr tl sel"><span data-g="0001"></span><span class="mono">09:58:03.412</span><span><span class="tag accent"><span class="dot" style="--c: var(--kind-journal)"></span>usn.change</span></span><span>payroll-old.csv FILE_DELETE</span><span class="mono muted">\Users\fixture\Documents</span><span><i data-i="bookmark" class="sm accent"></i></span></div>
+      <div class="tr tl"><span data-g="1000"></span><span class="mono">10:02:17.089</span><span><span class="tag"><span class="dot" style="--c: var(--kind-registry)"></span>registry.key_written</span></span><span>SOFTWARE\Microsoft\Windows\CurrentVersion\Run</span><span class="mono muted">SOFTWARE hive</span><span></span></div>
+      <div class="tr tl"><span data-g="1000"></span><span class="mono">10:05:40.350</span><span><span class="tag"><span class="dot" style="--c: var(--kind-log)"></span>log.event</span></span><span>Service Control Manager 7045, service installed</span><span class="mono muted">System.evtx</span><span></span></div>
+      <div class="tr tl"><span data-g="1000"></span><span class="mono">10:05:41.002</span><span><span class="tag"><span class="dot" style="--c: var(--kind-file)"></span>file.created</span></span><span>svchelper.exe created</span><span class="mono muted">\ProgramData\Helper</span><span></span></div>
+    </div>
+    <aside class="pane" aria-label="Event detail">
+      <div class="row"><span class="tag accent"><span class="dot" style="--c: var(--kind-journal)"></span>usn.change</span><span class="grow"></span><button class="btn icon" aria-label="Copy event as JSON"><i data-i="copy"></i></button></div>
+      <h2>payroll-old.csv deleted</h2>
+      <div class="mono muted">2026-03-14 09:58:03.412 UTC</div>
+      <div class="col" style="gap: var(--space-1)">
+        <div class="label">Where it is in the core</div>
+        <div class="tag" style="height: 26px">Live volume: not present</div>
+        <div class="tag" style="height: 26px">Shadow copy 2: not present</div>
+        <div class="tag" style="height: 26px">Shadow copy 1: not present</div>
+        <div class="tag accent" style="height: 32px; margin-left: 12px; justify-content: space-between; background: var(--color-accent); color: var(--color-accent-ink); font-weight: 600">Unallocated: carved here <span>0x1A3F4C180</span></div>
+      </div>
+      <dl class="kv">
+        <dt>Reasons</dt><dd class="mono">FILE_DELETE, CLOSE</dd>
+        <dt>File reference</dt><dd class="mono">48213-7</dd>
+        <dt>Parent</dt><dd class="mono">\Users\fixture\Documents</dd>
+        <dt>USN</dt><dd class="mono">8,412,330,496</dd>
+        <dt>Layer offset</dt><dd class="mono">0x02C7E180</dd>
+        <dt>Image offset</dt><dd class="mono">0x1A3F4C180</dd>
+      </dl>
+      <div class="form-row"><span>Note</span><div class="field value" style="height: auto; padding: var(--space-2) var(--space-3); align-items: flex-start">Deleted 16 minutes after the rename. Journal entry survives only in free space.</div></div>
+      <span class="grow"></span>
+      <div class="row">
+        <button class="btn primary grow"><i data-i="bookmark"></i>Bookmarked</button>
+        <button class="btn grow"><i data-i="history"></i>File history</button>
+        <button class="btn grow"><i data-i="files"></i>Go to file</button>
+      </div>
+    </aside>
+  </div>
+</main>
+</body>
+</html>

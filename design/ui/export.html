@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<title>Strata: Export and Report</title>
+<link rel="stylesheet" href="fonts.css">
+<link rel="stylesheet" href="../tokens/tokens.css">
+<link rel="stylesheet" href="ui.css">
+<script src="ui.js" defer></script>
+<style>
+.seg { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-2); }
+.opt { border: 1px solid var(--color-border-strong); border-radius: var(--radius-md); padding: var(--space-3); display: flex; flex-direction: column; gap: 2px; background: var(--color-surface); text-align: left; }
+.opt.on { border-color: var(--color-accent); background: var(--color-accent-soft); }
+.opt small { color: var(--color-text-muted); font-size: var(--text-sm); }
+</style>
+</head>
+<body data-chrome="bare">
+<main class="grow"></main>
+<div class="scrim" style="display: flex; gap: var(--space-6); align-items: flex-start; justify-content: center; padding-top: 72px">
+  <div class="dialog" role="dialog" aria-labelledby="e" style="width: 500px">
+    <header><i data-i="exportIcon" class="lg accent"></i><h2 id="e">Export timeline</h2><button class="btn ghost icon" aria-label="Close"><i data-i="close"></i></button></header>
+    <div class="body">
+      <div class="form-row"><span>What to export</span><div class="seg">
+        <button class="opt on"><b>Current filters</b><small>1,284 events · 14 Mar 09:00 to 10:30 · path \Users\fixture\**</small></button>
+        <button class="opt"><b>Everything</b><small>2,418,906 events</small></button></div></div>
+      <div class="form-row"><span>Format</span><div class="seg">
+        <button class="opt on"><b>CSV</b><small>Opens in a spreadsheet</small></button>
+        <button class="opt"><b>JSONL</b><small>One event per line, for scripts</small></button></div></div>
+      <label class="form-row"><span>Save as</span><div class="row"><div class="field value lg grow mono">D:\Cases\2026-014\exports\timeline-0314.csv</div><button class="btn lg">Browse</button></div></label>
+      <div class="well col" style="gap: var(--space-2)">
+        <div class="row"><i data-i="check" class="ok"></i><b class="grow">1,284 rows written</b><span class="mono muted">412 KB</span></div>
+        <div class="row mono" style="font-size: var(--text-xs)"><span class="muted">SHA-256</span><span class="grow">c41d9a70be22f6…08e17a4d</span><button class="btn ghost icon" aria-label="Copy SHA-256"><i data-i="copy" class="sm"></i></button></div>
+      </div>
+    </div>
+    <footer><button class="btn lg">Close</button><button class="btn primary lg">Export</button></footer>
+  </div>
+  <div class="dialog" role="dialog" aria-labelledby="r" style="width: 500px">
+    <header><i data-i="report" class="lg accent"></i><h2 id="r">Generate report</h2><button class="btn ghost icon" aria-label="Close"><i data-i="close"></i></button></header>
+    <div class="body">
+      <label class="form-row"><span>Title</span><div class="field value lg">2026-014 Harbour Freight: findings</div></label>
+      <div class="form-row"><span>Which events</span><div class="seg">
+        <button class="opt on"><b>Bookmarked</b><small>7 events with their notes</small></button>
+        <button class="opt"><b>Current filters</b><small>1,284 events</small></button></div></div>
+      <label class="check on"><i></i><span>Include an excerpt of the audit log</span></label>
+      <label class="form-row"><span>Save as</span><div class="row"><div class="field value lg grow mono">D:\Cases\2026-014\exports\findings.html</div><button class="btn lg">Browse</button></div>
+        <small class="danger row"><i data-i="warn" class="sm"></i>This file exists. Generating will ask before replacing it.</small></label>
+      <div class="col" style="gap: var(--space-2)"><div class="row"><span class="grow">Writing the report</span><span class="mono muted">5 of 7 events</span></div><div class="progress"><i style="width: 71%"></i></div></div>
+    </div>
+    <footer><button class="btn lg">Cancel</button><button class="btn primary lg" disabled>Generate</button></footer>
+  </div>
+</div>
+</body>
+</html>

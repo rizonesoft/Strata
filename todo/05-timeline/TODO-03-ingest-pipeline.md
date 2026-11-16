@@ -40,6 +40,8 @@ track: M5
 | 4 | §4 | Carved record ingest | §3, D04 T01 §3, D04 T01 §5 | [ ] |
 | 5 | §5 | Progress, cancellation and rerun | §4, T01 §5 | [ ] |
 | 6 | §6 | Optional content hashing | §2 | [ ] |
+| 7 | §7 | Recoverability of deleted records at ingest | §2, D02 T01 §9 | [ ] |
+| 8 | §8 | Disk map written at ingest | §4, D02 T01 §9, D03 T01 §4 | [ ] |
 
 ## 1. Ingest options, plan and run record
 
@@ -170,6 +172,49 @@ With `--hash-content`, every file's content is hashed so history can say "same b
 - [ ] Commit: `engine: optional content hashing`
 
 **Test checkpoint:** `cargo test -p strata-engine ingest::hashing` passes with the fixture built; the reuse test fails if every snapshot file is rehashed.
+
+## 7. Recoverability of deleted records at ingest
+
+The Deleted files view (SPEC B15) says, for each deleted record, how much of its content can still be read. That is decided against the allocation bitmap, which needs the evidence, so it is computed once at ingest and stored.
+
+**Phase:** 5
+**Needs:** none
+**Surface:** no
+
+**Build order:**
+
+1. Compute recoverability in the files stage in `crates/strata-engine/src/ingest/files.rs`. Done when: every deleted row carries a value.
+2. Store the share that is intact. Done when: a partly overwritten file reports a percentage.
+
+- [ ] For each deleted record in the live layer, call `strata_ntfs::recoverability` with the layer's bitmap and store `intact`, `partly`, `overwritten` or `resident` in `files.recoverability`. Done when: a test over the fixture finds every manifest deleted file with a non-null value.
+- [ ] Store `recoverable_bytes` beside it: the bytes of the record's runs that lie in clusters still free. Done when: a unit test with a stub record of four runs, one reused, stores three quarters of the size.
+- [ ] For a deleted record seen only in a snapshot, store `intact` when the snapshot still resolves every run, since the shadow store preserved it. Done when: the manifest file deleted between the snapshots reads `intact` in `vss1`.
+- [ ] Leave carved records `partly` with their recoverable bytes computed the same way, never `intact`, because a carved record's runs are unverified. Done when: a test asserts no carved row is `intact`.
+- [ ] Commit: `engine: recoverability of deleted records at ingest`
+
+**Test checkpoint:** `cargo test -p strata-engine ingest::recoverability` passes with the fixture built; the reused-run test fails if recoverability is taken from the record's flags alone.
+
+## 8. Disk map written at ingest
+
+The Disk map (SPEC B17) draws the whole volume at a glance. Reading the bitmap of a large volume on every visit would be slow and impossible without the evidence, so a downsampled map is stored in the case.
+
+**Phase:** 5
+**Needs:** none
+**Surface:** no
+
+**Build order:**
+
+1. Build the map in `crates/strata-engine/src/ingest/diskmap.rs`. Done when: the fixture volume yields 4096 cells.
+2. Add the per-layer and carved overlays. Done when: a cell knows what was carved inside it.
+
+- [ ] Divide the volume into 4096 equal cluster groups and store per group, in `diskmap`, the allocated cluster count from the live bitmap. Done when: the stored counts sum to the bitmap's allocated total.
+- [ ] Mark the groups that hold the `$MFT` runs and the shadow storage ranges (from `strata-vss`'s block range list). Done when: a test finds the group of the fixture's MFT start cluster flagged `mft`.
+- [ ] Store per group the count of carved records, by kind, from the carving stage's offsets. Done when: the sum over groups equals the carved record count.
+- [ ] Store the same allocated counts for each snapshot layer, read from that snapshot's `$Bitmap`. Done when: a group freed after snapshot 1 shows allocated in `vss1` and free in the live layer.
+- [ ] Replace a layer's rows on a rerun, in one transaction. Done when: two runs leave 4096 rows per layer.
+- [ ] Commit: `engine: disk map written at ingest`
+
+**Test checkpoint:** `cargo test -p strata-engine ingest::diskmap` passes with the fixture built; the sum test fails if groups overlap or leave a gap.
 
 ## Verification
 

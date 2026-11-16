@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<title>Strata: Overview</title>
+<link rel="stylesheet" href="fonts.css">
+<link rel="stylesheet" href="../tokens/tokens.css">
+<link rel="stylesheet" href="ui.css">
+<script src="ui.js" defer></script>
+</head>
+<body data-view="overview" data-core="all">
+<main class="content">
+  <div class="page-head">
+    <h1>Overview</h1>
+    <span class="muted">Case 2026-014 Harbour Freight · examiner T. Mokoena</span>
+    <span class="grow"></span>
+    <button class="btn"><i data-i="evidence"></i>Run ingest again</button>
+  </div>
+  <div class="scroll pad" style="padding-top: 0">
+    <div class="cards" style="grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr)">
+      <section class="card" aria-label="Evidence">
+        <div class="row"><i data-i="shield" class="lg ok"></i><div class="grow"><h3>harbour-ws04.E01</h3><div class="muted">Expert Witness Format · 4 segments · 238.4 GB</div></div><span class="tag ok">Hash verified</span></div>
+        <dl class="kv">
+          <dt>Path</dt><dd class="mono">E:\Evidence\2026-014\harbour-ws04.E01</dd>
+          <dt>SHA-256</dt><dd class="mono row">9f2c41d07a6b…e41b77c0a3d5 <button class="btn ghost icon" aria-label="Copy SHA-256"><i data-i="copy" class="sm"></i></button></dd>
+          <dt>MD5</dt><dd class="mono row">5d41402abc4b2a76b9719d911017c592 <button class="btn ghost icon" aria-label="Copy MD5"><i data-i="copy" class="sm"></i></button></dd>
+          <dt>Stored hash</dt><dd>MD5 in the image, matches</dd>
+        </dl>
+      </section>
+      <section class="card" aria-label="Start here">
+        <h3>Start here</h3>
+        <div class="tiles">
+          <a class="tile" href="files.html"><i data-i="files" class="lg"></i>Browse files</a>
+          <a class="tile" href="deleted.html"><i data-i="deleted" class="lg"></i>Deleted files</a>
+          <a class="tile" href="timeline.html"><i data-i="timeline" class="lg"></i>Timeline</a>
+          <a class="tile" href="activity.html"><i data-i="activity" class="lg"></i>Recent activity</a>
+          <a class="tile" href="compare.html"><i data-i="compare" class="lg"></i>Compare layers</a>
+          <a class="tile" href="diskmap.html"><i data-i="disk" class="lg"></i>Disk map</a>
+        </div>
+      </section>
+      <section class="card" aria-label="Activity over time" style="grid-column: 1 / -1">
+        <div class="row"><h3 class="grow">Events per day</h3><span class="legend"><span><span class="dot" style="--c: var(--layer-live)"></span>All layers</span><span><span class="dot" style="--c: var(--color-accent)"></span>Shadow copies and acquisition</span></span></div>
+        <div data-chart="area"></div>
+      </section>
+    </div>
+    <div class="cards" style="grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: var(--space-4)">
+      <section class="card" aria-label="Events by family">
+        <h3>Events by family</h3>
+        <div class="row" style="gap: var(--space-4)">
+          <div data-chart="donut" data-label="Events by family" data-values="61:--kind-file,24:--kind-journal,9:--kind-log,3:--kind-registry,2:--kind-program,1:--kind-shortcut"></div>
+          <div class="col grow" style="gap: 6px; font-size: var(--text-sm)">
+            <div class="row"><span class="dot" style="--c: var(--kind-file)"></span><span class="grow">Files</span><span class="mono">1,475,532</span></div>
+            <div class="row"><span class="dot" style="--c: var(--kind-journal)"></span><span class="grow">Journal</span><span class="mono">580,537</span></div>
+            <div class="row"><span class="dot" style="--c: var(--kind-log)"></span><span class="grow">Event log</span><span class="mono">217,701</span></div>
+            <div class="row"><span class="dot" style="--c: var(--kind-registry)"></span><span class="grow">Registry</span><span class="mono">96,756</span></div>
+            <div class="row"><span class="dot" style="--c: var(--kind-program)"></span><span class="grow">Programs</span><span class="mono">33,865</span></div>
+            <div class="row"><span class="dot" style="--c: var(--kind-shortcut)"></span><span class="grow">Shortcuts</span><span class="mono">14,515</span></div>
+          </div>
+        </div>
+      </section>
+      <section class="card" aria-label="When activity happens">
+        <h3>When activity happens</h3>
+        <div data-chart="heat"></div>
+        <div class="notice"><i data-i="warn"></i><span>Saturday 21:00 to 23:00 is far busier than any other weekend hour.</span></div>
+      </section>
+      <section class="card" aria-label="What each layer adds">
+        <h3>What each layer adds</h3>
+        <div data-chart="hbars" data-label="File records by where they are found" data-values="In every layer:412380:--layer-live:412,380|Only in shadow copies:3912:--layer-snap-1:3,912|Deleted, record intact:1204:--layer-snap-2:1,204|Carved from free space:870:--layer-unalloc:870"></div>
+        <p class="muted" style="font-size: var(--text-sm)">3,912 files exist only in a shadow copy: they were changed or removed before acquisition.</p>
+      </section>
+    </div>
+    <section class="card" aria-label="Ingest runs" style="margin-top: var(--space-4); padding: var(--space-4) 0 0">
+      <h3 style="padding: 0 var(--space-5)">Ingest runs</h3>
+      <div>
+        <div class="thead" style="grid-template-columns: 170px 90px minmax(0, 1fr) 110px 90px"><span>Started</span><span>Duration</span><span>Options</span><span>Result</span><span class="num">Warnings</span></div>
+        <div class="tr" style="grid-template-columns: 170px 90px minmax(0, 1fr) 110px 90px"><span class="mono">2026-03-15 08:02</span><span class="mono">1 h 47 m</span><span>Shadow copies, carving, verify</span><span class="ok">Completed</span><span class="num mono">3</span></div>
+        <div class="tr" style="grid-template-columns: 170px 90px minmax(0, 1fr) 110px 90px"><span class="mono">2026-03-14 16:40</span><span class="mono">0 h 22 m</span><span>Shadow copies, carving, verify</span><span class="accent">Cancelled</span><span class="num mono">0</span></div>
+      </div>
+    </section>
+  </div>
+</main>
+</body>
+</html>
